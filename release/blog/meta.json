@@ -1,1 +1,17 @@
-not found
+{
+  "title": "What the world grows: farmland and crops on one map",
+  "slug": "crop-map",
+  "excerpt": "The leading crop on every 10 km square of the world's farmland, and sixty years of change in how much land we farm. Wheat, maize, rice and soya beans cover 50% of the harvest, and half of it grows on 6.4% of the world's land.",
+  "seo_description": "A world map of what farmers grow: the leading crop on every 10 km of farmland, 34 crops, and every country's cropland since 1961.",
+  "tags": [
+    "farming",
+    "crops",
+    "agriculture",
+    "land use",
+    "maps",
+    "data visualisation",
+    "FAOSTAT",
+    "CROPGRIDS"
+  ],
+  "header_alt": "Title card reading 'What the world grows' in black and terracotta on cream, beside a world map colouring farmland by its leading crop: gold wheat across Europe and the steppes, orange maize, blue rice in Asia and green soya beans in the Americas. Text: half the harvest of 34 crops grows on 6.4% of the world's land."
+}

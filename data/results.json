@@ -1,1 +1,4548 @@
-not found
+{
+ "meta": {
+  "page": "https://maps.tristanhotham.com/crop-map/",
+  "repo": "https://github.com/Tristan-Hotham/crop-map",
+  "doi": "{{DOI}}",
+  "retrieved": "2026",
+  "n_crops": 34,
+  "n_crops_cropgrids": 173
+ },
+ "fao": {
+  "world_ha_2020": 1449986722.0,
+  "world_ha_2024": 1492553005.0,
+  "world_ha_1961": 971285563.0,
+  "share34_2020": 87.3495,
+  "share34_2024": 87.3656,
+  "n_items": 157,
+  "growth_pct": 53.6678
+ },
+ "crops": {
+  "rows": [
+   {
+    "k": "wheat",
+    "name": "Wheat",
+    "fam": "cereal",
+    "ha_1961": 204209450.0,
+    "ha_2024": 219507039.0,
+    "ha_2020": 219849950.0,
+    "chg_pct": 7.4911,
+    "x": 1.0749
+   },
+   {
+    "k": "maize",
+    "name": "Maize",
+    "fam": "cereal",
+    "ha_1961": 105559547.0,
+    "ha_2024": 209692992.0,
+    "ha_2020": 200258195.0,
+    "chg_pct": 98.649,
+    "x": 1.9865
+   },
+   {
+    "k": "rice",
+    "name": "Rice",
+    "fam": "cereal",
+    "ha_1961": 115365128.0,
+    "ha_2024": 172347125.0,
+    "ha_2020": 164466056.0,
+    "chg_pct": 49.3927,
+    "x": 1.4939
+   },
+   {
+    "k": "soybean",
+    "name": "Soya beans",
+    "fam": "oil",
+    "ha_1961": 23818820.0,
+    "ha_2024": 143170351.0,
+    "ha_2020": 128375147.0,
+    "chg_pct": 501.0808,
+    "x": 6.0108
+   },
+   {
+    "k": "sorghum",
+    "name": "Sorghum",
+    "fam": "cereal",
+    "ha_1961": 46009140.0,
+    "ha_2024": 44231316.0,
+    "ha_2020": 39945866.0,
+    "chg_pct": -3.8641,
+    "x": 0.9614
+   },
+   {
+    "k": "barley",
+    "name": "Barley",
+    "fam": "cereal",
+    "ha_1961": 54518640.0,
+    "ha_2024": 44041018.0,
+    "ha_2020": 51890912.0,
+    "chg_pct": -19.2184,
+    "x": 0.8078
+   },
+   {
+    "k": "rapeseed",
+    "name": "Rapeseed",
+    "fam": "oil",
+    "ha_1961": 6277273.0,
+    "ha_2024": 42863230.0,
+    "ha_2020": 35431623.0,
+    "chg_pct": 582.832,
+    "x": 6.8283
+   },
+   {
+    "k": "cassava",
+    "name": "Cassava",
+    "fam": "root",
+    "ha_1961": 9623133.0,
+    "ha_2024": 33542745.0,
+    "ha_2020": 30347526.0,
+    "chg_pct": 248.5637,
+    "x": 3.4856
+   },
+   {
+    "k": "bean",
+    "name": "Dry beans",
+    "fam": "pulse",
+    "ha_1961": 22766818.0,
+    "ha_2024": 33489093.0,
+    "ha_2020": 33554268.0,
+    "chg_pct": 47.0961,
+    "x": 1.471
+   },
+   {
+    "k": "groundnut",
+    "name": "Groundnuts",
+    "fam": "oil",
+    "ha_1961": 16641343.0,
+    "ha_2024": 31110155.0,
+    "ha_2020": 31273422.0,
+    "chg_pct": 86.945,
+    "x": 1.8694
+   },
+   {
+    "k": "millet",
+    "name": "Millet",
+    "fam": "cereal",
+    "ha_1961": 43401259.0,
+    "ha_2024": 30664914.0,
+    "ha_2020": 32001868.0,
+    "chg_pct": -29.3456,
+    "x": 0.7065
+   },
+   {
+    "k": "cotton",
+    "name": "Cotton",
+    "fam": "fibre",
+    "ha_1961": 31861053.0,
+    "ha_2024": 30543763.0,
+    "ha_2020": 32113796.0,
+    "chg_pct": -4.1345,
+    "x": 0.9587
+   },
+   {
+    "k": "oilpalm",
+    "name": "Oil palm",
+    "fam": "tree",
+    "ha_1961": 3621037.0,
+    "ha_2024": 28991397.0,
+    "ha_2020": 27263324.0,
+    "chg_pct": 700.638,
+    "x": 8.0064
+   },
+   {
+    "k": "sunflower",
+    "name": "Sunflower",
+    "fam": "oil",
+    "ha_1961": 6667130.0,
+    "ha_2024": 28728507.0,
+    "ha_2020": 27496056.0,
+    "chg_pct": 330.8977,
+    "x": 4.309
+   },
+   {
+    "k": "sugarcane",
+    "name": "Sugar cane",
+    "fam": "sugar",
+    "ha_1961": 8910248.0,
+    "ha_2024": 26669399.0,
+    "ha_2020": 26111479.0,
+    "chg_pct": 199.3115,
+    "x": 2.9931
+   },
+   {
+    "k": "potato",
+    "name": "Potatoes",
+    "fam": "root",
+    "ha_1961": 22147875.0,
+    "ha_2024": 17070869.0,
+    "ha_2020": 16949299.0,
+    "chg_pct": -22.9232,
+    "x": 0.7708
+   },
+   {
+    "k": "cowpea",
+    "name": "Cowpeas",
+    "fam": "pulse",
+    "ha_1961": 2410732.0,
+    "ha_2024": 15783927.0,
+    "ha_2020": 15513976.0,
+    "chg_pct": 554.7359,
+    "x": 6.5474
+   },
+   {
+    "k": "chickpea",
+    "name": "Chickpeas",
+    "fam": "pulse",
+    "ha_1961": 11836682.0,
+    "ha_2024": 14122837.0,
+    "ha_2020": 13846767.0,
+    "chg_pct": 19.3142,
+    "x": 1.1931
+   },
+   {
+    "k": "rubber",
+    "name": "Rubber",
+    "fam": "tree",
+    "ha_1961": 3879860.0,
+    "ha_2024": 13222161.0,
+    "ha_2020": 12971947.0,
+    "chg_pct": 240.7896,
+    "x": 3.4079
+   },
+   {
+    "k": "coffee",
+    "name": "Coffee",
+    "fam": "tree",
+    "ha_1961": 9757455.0,
+    "ha_2024": 12329872.0,
+    "ha_2020": 12033191.0,
+    "chg_pct": 26.3636,
+    "x": 1.2636
+   },
+   {
+    "k": "sesame",
+    "name": "Sesame",
+    "fam": "oil",
+    "ha_1961": 4963028.0,
+    "ha_2024": 11718094.0,
+    "ha_2020": 13713469.0,
+    "chg_pct": 136.1078,
+    "x": 2.3611
+   },
+   {
+    "k": "coconut",
+    "name": "Coconut",
+    "fam": "tree",
+    "ha_1961": 5222441.0,
+    "ha_2024": 11205754.0,
+    "ha_2020": 11088353.0,
+    "chg_pct": 114.5693,
+    "x": 2.1457
+   },
+   {
+    "k": "olive",
+    "name": "Olives",
+    "fam": "tree",
+    "ha_1961": 2608804.0,
+    "ha_2024": 11016175.0,
+    "ha_2020": 12684837.0,
+    "chg_pct": 322.2692,
+    "x": 4.2227
+   },
+   {
+    "k": "cocoa",
+    "name": "Cocoa",
+    "fam": "tree",
+    "ha_1961": 4403381.0,
+    "ha_2024": 10991030.0,
+    "ha_2020": 11684061.0,
+    "chg_pct": 149.6043,
+    "x": 2.496
+   },
+   {
+    "k": "yam",
+    "name": "Yams",
+    "fam": "root",
+    "ha_1961": 1150584.0,
+    "ha_2024": 10941564.0,
+    "ha_2020": 9884368.0,
+    "chg_pct": 850.9574,
+    "x": 9.5096
+   },
+   {
+    "k": "oats",
+    "name": "Oats",
+    "fam": "cereal",
+    "ha_1961": 38260751.0,
+    "ha_2024": 8535539.0,
+    "ha_2020": 10040682.0,
+    "chg_pct": -77.6911,
+    "x": 0.2231
+   },
+   {
+    "k": "pea",
+    "name": "Dry peas",
+    "fam": "pulse",
+    "ha_1961": 7549841.0,
+    "ha_2024": 7358729.0,
+    "ha_2020": 7279733.0,
+    "chg_pct": -2.5313,
+    "x": 0.9747
+   },
+   {
+    "k": "plantain",
+    "name": "Plantains",
+    "fam": "tree",
+    "ha_1961": 2334673.0,
+    "ha_2024": 7212169.0,
+    "ha_2020": 6937334.0,
+    "chg_pct": 208.9156,
+    "x": 3.0892
+   },
+   {
+    "k": "grape",
+    "name": "Grapes",
+    "fam": "tree",
+    "ha_1961": 9333213.0,
+    "ha_2024": 6723177.0,
+    "ha_2020": 6839860.0,
+    "chg_pct": -27.965,
+    "x": 0.7203
+   },
+   {
+    "k": "lentil",
+    "name": "Lentils",
+    "fam": "pulse",
+    "ha_1961": 1619653.0,
+    "ha_2024": 6421463.0,
+    "ha_2020": 5071763.0,
+    "chg_pct": 296.4715,
+    "x": 3.9647
+   },
+   {
+    "k": "banana",
+    "name": "Bananas",
+    "fam": "tree",
+    "ha_1961": 2106389.0,
+    "ha_2024": 5880184.0,
+    "ha_2020": 5645535.0,
+    "chg_pct": 179.1595,
+    "x": 2.7916
+   },
+   {
+    "k": "tea",
+    "name": "Tea",
+    "fam": "tree",
+    "ha_1961": 1366126.0,
+    "ha_2024": 5536957.0,
+    "ha_2020": 5109912.0,
+    "chg_pct": 305.3035,
+    "x": 4.053
+   },
+   {
+    "k": "sugarbeet",
+    "name": "Sugar beet",
+    "fam": "sugar",
+    "ha_1961": 6926098.0,
+    "ha_2024": 4654091.0,
+    "ha_2020": 4336607.0,
+    "chg_pct": -32.8036,
+    "x": 0.672
+   },
+   {
+    "k": "rye",
+    "name": "Rye",
+    "fam": "cereal",
+    "ha_1961": 30254816.0,
+    "ha_2024": 3660443.0,
+    "ha_2020": 4545647.0,
+    "chg_pct": -87.9013,
+    "x": 0.121
+   }
+  ],
+  "by_k": {
+   "wheat": {
+    "k": "wheat",
+    "name": "Wheat",
+    "fam": "cereal",
+    "ha_1961": 204209450.0,
+    "ha_2024": 219507039.0,
+    "ha_2020": 219849950.0,
+    "chg_pct": 7.4911,
+    "x": 1.0749
+   },
+   "maize": {
+    "k": "maize",
+    "name": "Maize",
+    "fam": "cereal",
+    "ha_1961": 105559547.0,
+    "ha_2024": 209692992.0,
+    "ha_2020": 200258195.0,
+    "chg_pct": 98.649,
+    "x": 1.9865
+   },
+   "rice": {
+    "k": "rice",
+    "name": "Rice",
+    "fam": "cereal",
+    "ha_1961": 115365128.0,
+    "ha_2024": 172347125.0,
+    "ha_2020": 164466056.0,
+    "chg_pct": 49.3927,
+    "x": 1.4939
+   },
+   "soybean": {
+    "k": "soybean",
+    "name": "Soya beans",
+    "fam": "oil",
+    "ha_1961": 23818820.0,
+    "ha_2024": 143170351.0,
+    "ha_2020": 128375147.0,
+    "chg_pct": 501.0808,
+    "x": 6.0108
+   },
+   "sorghum": {
+    "k": "sorghum",
+    "name": "Sorghum",
+    "fam": "cereal",
+    "ha_1961": 46009140.0,
+    "ha_2024": 44231316.0,
+    "ha_2020": 39945866.0,
+    "chg_pct": -3.8641,
+    "x": 0.9614
+   },
+   "barley": {
+    "k": "barley",
+    "name": "Barley",
+    "fam": "cereal",
+    "ha_1961": 54518640.0,
+    "ha_2024": 44041018.0,
+    "ha_2020": 51890912.0,
+    "chg_pct": -19.2184,
+    "x": 0.8078
+   },
+   "rapeseed": {
+    "k": "rapeseed",
+    "name": "Rapeseed",
+    "fam": "oil",
+    "ha_1961": 6277273.0,
+    "ha_2024": 42863230.0,
+    "ha_2020": 35431623.0,
+    "chg_pct": 582.832,
+    "x": 6.8283
+   },
+   "cassava": {
+    "k": "cassava",
+    "name": "Cassava",
+    "fam": "root",
+    "ha_1961": 9623133.0,
+    "ha_2024": 33542745.0,
+    "ha_2020": 30347526.0,
+    "chg_pct": 248.5637,
+    "x": 3.4856
+   },
+   "bean": {
+    "k": "bean",
+    "name": "Dry beans",
+    "fam": "pulse",
+    "ha_1961": 22766818.0,
+    "ha_2024": 33489093.0,
+    "ha_2020": 33554268.0,
+    "chg_pct": 47.0961,
+    "x": 1.471
+   },
+   "groundnut": {
+    "k": "groundnut",
+    "name": "Groundnuts",
+    "fam": "oil",
+    "ha_1961": 16641343.0,
+    "ha_2024": 31110155.0,
+    "ha_2020": 31273422.0,
+    "chg_pct": 86.945,
+    "x": 1.8694
+   },
+   "millet": {
+    "k": "millet",
+    "name": "Millet",
+    "fam": "cereal",
+    "ha_1961": 43401259.0,
+    "ha_2024": 30664914.0,
+    "ha_2020": 32001868.0,
+    "chg_pct": -29.3456,
+    "x": 0.7065
+   },
+   "cotton": {
+    "k": "cotton",
+    "name": "Cotton",
+    "fam": "fibre",
+    "ha_1961": 31861053.0,
+    "ha_2024": 30543763.0,
+    "ha_2020": 32113796.0,
+    "chg_pct": -4.1345,
+    "x": 0.9587
+   },
+   "oilpalm": {
+    "k": "oilpalm",
+    "name": "Oil palm",
+    "fam": "tree",
+    "ha_1961": 3621037.0,
+    "ha_2024": 28991397.0,
+    "ha_2020": 27263324.0,
+    "chg_pct": 700.638,
+    "x": 8.0064
+   },
+   "sunflower": {
+    "k": "sunflower",
+    "name": "Sunflower",
+    "fam": "oil",
+    "ha_1961": 6667130.0,
+    "ha_2024": 28728507.0,
+    "ha_2020": 27496056.0,
+    "chg_pct": 330.8977,
+    "x": 4.309
+   },
+   "sugarcane": {
+    "k": "sugarcane",
+    "name": "Sugar cane",
+    "fam": "sugar",
+    "ha_1961": 8910248.0,
+    "ha_2024": 26669399.0,
+    "ha_2020": 26111479.0,
+    "chg_pct": 199.3115,
+    "x": 2.9931
+   },
+   "potato": {
+    "k": "potato",
+    "name": "Potatoes",
+    "fam": "root",
+    "ha_1961": 22147875.0,
+    "ha_2024": 17070869.0,
+    "ha_2020": 16949299.0,
+    "chg_pct": -22.9232,
+    "x": 0.7708
+   },
+   "cowpea": {
+    "k": "cowpea",
+    "name": "Cowpeas",
+    "fam": "pulse",
+    "ha_1961": 2410732.0,
+    "ha_2024": 15783927.0,
+    "ha_2020": 15513976.0,
+    "chg_pct": 554.7359,
+    "x": 6.5474
+   },
+   "chickpea": {
+    "k": "chickpea",
+    "name": "Chickpeas",
+    "fam": "pulse",
+    "ha_1961": 11836682.0,
+    "ha_2024": 14122837.0,
+    "ha_2020": 13846767.0,
+    "chg_pct": 19.3142,
+    "x": 1.1931
+   },
+   "rubber": {
+    "k": "rubber",
+    "name": "Rubber",
+    "fam": "tree",
+    "ha_1961": 3879860.0,
+    "ha_2024": 13222161.0,
+    "ha_2020": 12971947.0,
+    "chg_pct": 240.7896,
+    "x": 3.4079
+   },
+   "coffee": {
+    "k": "coffee",
+    "name": "Coffee",
+    "fam": "tree",
+    "ha_1961": 9757455.0,
+    "ha_2024": 12329872.0,
+    "ha_2020": 12033191.0,
+    "chg_pct": 26.3636,
+    "x": 1.2636
+   },
+   "sesame": {
+    "k": "sesame",
+    "name": "Sesame",
+    "fam": "oil",
+    "ha_1961": 4963028.0,
+    "ha_2024": 11718094.0,
+    "ha_2020": 13713469.0,
+    "chg_pct": 136.1078,
+    "x": 2.3611
+   },
+   "coconut": {
+    "k": "coconut",
+    "name": "Coconut",
+    "fam": "tree",
+    "ha_1961": 5222441.0,
+    "ha_2024": 11205754.0,
+    "ha_2020": 11088353.0,
+    "chg_pct": 114.5693,
+    "x": 2.1457
+   },
+   "olive": {
+    "k": "olive",
+    "name": "Olives",
+    "fam": "tree",
+    "ha_1961": 2608804.0,
+    "ha_2024": 11016175.0,
+    "ha_2020": 12684837.0,
+    "chg_pct": 322.2692,
+    "x": 4.2227
+   },
+   "cocoa": {
+    "k": "cocoa",
+    "name": "Cocoa",
+    "fam": "tree",
+    "ha_1961": 4403381.0,
+    "ha_2024": 10991030.0,
+    "ha_2020": 11684061.0,
+    "chg_pct": 149.6043,
+    "x": 2.496
+   },
+   "yam": {
+    "k": "yam",
+    "name": "Yams",
+    "fam": "root",
+    "ha_1961": 1150584.0,
+    "ha_2024": 10941564.0,
+    "ha_2020": 9884368.0,
+    "chg_pct": 850.9574,
+    "x": 9.5096
+   },
+   "oats": {
+    "k": "oats",
+    "name": "Oats",
+    "fam": "cereal",
+    "ha_1961": 38260751.0,
+    "ha_2024": 8535539.0,
+    "ha_2020": 10040682.0,
+    "chg_pct": -77.6911,
+    "x": 0.2231
+   },
+   "pea": {
+    "k": "pea",
+    "name": "Dry peas",
+    "fam": "pulse",
+    "ha_1961": 7549841.0,
+    "ha_2024": 7358729.0,
+    "ha_2020": 7279733.0,
+    "chg_pct": -2.5313,
+    "x": 0.9747
+   },
+   "plantain": {
+    "k": "plantain",
+    "name": "Plantains",
+    "fam": "tree",
+    "ha_1961": 2334673.0,
+    "ha_2024": 7212169.0,
+    "ha_2020": 6937334.0,
+    "chg_pct": 208.9156,
+    "x": 3.0892
+   },
+   "grape": {
+    "k": "grape",
+    "name": "Grapes",
+    "fam": "tree",
+    "ha_1961": 9333213.0,
+    "ha_2024": 6723177.0,
+    "ha_2020": 6839860.0,
+    "chg_pct": -27.965,
+    "x": 0.7203
+   },
+   "lentil": {
+    "k": "lentil",
+    "name": "Lentils",
+    "fam": "pulse",
+    "ha_1961": 1619653.0,
+    "ha_2024": 6421463.0,
+    "ha_2020": 5071763.0,
+    "chg_pct": 296.4715,
+    "x": 3.9647
+   },
+   "banana": {
+    "k": "banana",
+    "name": "Bananas",
+    "fam": "tree",
+    "ha_1961": 2106389.0,
+    "ha_2024": 5880184.0,
+    "ha_2020": 5645535.0,
+    "chg_pct": 179.1595,
+    "x": 2.7916
+   },
+   "tea": {
+    "k": "tea",
+    "name": "Tea",
+    "fam": "tree",
+    "ha_1961": 1366126.0,
+    "ha_2024": 5536957.0,
+    "ha_2020": 5109912.0,
+    "chg_pct": 305.3035,
+    "x": 4.053
+   },
+   "sugarbeet": {
+    "k": "sugarbeet",
+    "name": "Sugar beet",
+    "fam": "sugar",
+    "ha_1961": 6926098.0,
+    "ha_2024": 4654091.0,
+    "ha_2020": 4336607.0,
+    "chg_pct": -32.8036,
+    "x": 0.672
+   },
+   "rye": {
+    "k": "rye",
+    "name": "Rye",
+    "fam": "cereal",
+    "ha_1961": 30254816.0,
+    "ha_2024": 3660443.0,
+    "ha_2020": 4545647.0,
+    "chg_pct": -87.9013,
+    "x": 0.121
+   }
+  },
+  "fastest": [
+   {
+    "k": "yam",
+    "name": "Yams",
+    "x": 9.5096
+   },
+   {
+    "k": "oilpalm",
+    "name": "Oil palm",
+    "x": 8.0064
+   },
+   {
+    "k": "rapeseed",
+    "name": "Rapeseed",
+    "x": 6.8283
+   },
+   {
+    "k": "cowpea",
+    "name": "Cowpeas",
+    "x": 6.5474
+   },
+   {
+    "k": "soybean",
+    "name": "Soya beans",
+    "x": 6.0108
+   },
+   {
+    "k": "sunflower",
+    "name": "Sunflower",
+    "x": 4.309
+   }
+  ],
+  "shrinking": [
+   {
+    "k": "rye",
+    "name": "Rye",
+    "chg_pct": -87.9013
+   },
+   {
+    "k": "oats",
+    "name": "Oats",
+    "chg_pct": -77.6911
+   },
+   {
+    "k": "sugarbeet",
+    "name": "Sugar beet",
+    "chg_pct": -32.8036
+   },
+   {
+    "k": "millet",
+    "name": "Millet",
+    "chg_pct": -29.3456
+   },
+   {
+    "k": "grape",
+    "name": "Grapes",
+    "chg_pct": -27.965
+   },
+   {
+    "k": "potato",
+    "name": "Potatoes",
+    "chg_pct": -22.9232
+   }
+  ],
+  "top4_share_2024": 49.8955,
+  "soy_x": 6.0108,
+  "palm_x": 8.0064,
+  "gain_mha": {
+   "wheat": 15.3,
+   "maize": 104.1,
+   "rice": 57.0,
+   "soybean": 119.4,
+   "sorghum": -1.8,
+   "barley": -10.5,
+   "rapeseed": 36.6,
+   "cassava": 23.9,
+   "bean": 10.7,
+   "groundnut": 14.5,
+   "millet": -12.7,
+   "cotton": -1.3,
+   "oilpalm": 25.4,
+   "sunflower": 22.1,
+   "sugarcane": 17.8,
+   "potato": -5.1,
+   "cowpea": 13.4,
+   "chickpea": 2.3,
+   "rubber": 9.3,
+   "coffee": 2.6,
+   "sesame": 6.8,
+   "coconut": 6.0,
+   "olive": 8.4,
+   "cocoa": 6.6,
+   "yam": 9.8,
+   "oats": -29.7,
+   "pea": -0.2,
+   "plantain": 4.9,
+   "grape": -2.6,
+   "lentil": 4.8,
+   "banana": 3.8,
+   "tea": 4.2,
+   "sugarbeet": -2.3,
+   "rye": -26.6
+  },
+  "world_gain_mha": 521.2674,
+  "soy_palm_maize_gain_share": 47.7404
+ },
+ "top_crop": {
+  "n_countries": 198,
+  "counts": [
+   {
+    "name": "Wheat",
+    "n": 42
+   },
+   {
+    "name": "Maize",
+    "n": 32
+   },
+   {
+    "name": "Rice",
+    "n": 22
+   },
+   {
+    "name": "Coconuts",
+    "n": 17
+   },
+   {
+    "name": "Olives",
+    "n": 8
+   },
+   {
+    "name": "Other vegetables",
+    "n": 8
+   },
+   {
+    "name": "Sorghum",
+    "n": 7
+   },
+   {
+    "name": "Barley",
+    "n": 7
+   },
+   {
+    "name": "Soya beans",
+    "n": 6
+   },
+   {
+    "name": "Dates",
+    "n": 6
+   },
+   {
+    "name": "Sugar cane",
+    "n": 5
+   },
+   {
+    "name": "Oil palm",
+    "n": 4
+   },
+   {
+    "name": "Cassava",
+    "n": 4
+   },
+   {
+    "name": "Millet",
+    "n": 4
+   },
+   {
+    "name": "Cocoa beans",
+    "n": 4
+   }
+  ],
+  "by": {
+   "Maize": 32,
+   "Rice": 22,
+   "Wheat": 42,
+   "Soya beans": 6,
+   "Cassava": 4,
+   "Coconuts": 17,
+   "Barley": 7,
+   "Sorghum": 7,
+   "Millet": 4,
+   "Olives": 8,
+   "Oil palm": 4,
+   "Cocoa beans": 4,
+   "Coffee": 3,
+   "Sugar cane": 5,
+   "Dry beans": 4,
+   "Groundnuts": 2
+  },
+  "GBR": {
+   "name": "Wheat",
+   "share": 40.4142,
+   "ha": 1686590.3333
+  },
+  "FRA": {
+   "name": "Wheat",
+   "share": 35.7203,
+   "ha": 4800766.6667
+  },
+  "USA": {
+   "name": "Soya beans",
+   "share": 34.7369,
+   "ha": 34330526.6667
+  },
+  "BRA": {
+   "name": "Soya beans",
+   "share": 45.7457,
+   "ha": 43791786.6667
+  },
+  "ARG": {
+   "name": "Soya beans",
+   "share": 40.8529,
+   "ha": 15534093.6667
+  },
+  "IND": {
+   "name": "Rice",
+   "share": 22.9457,
+   "ha": 48106122.0
+  },
+  "CHN": {
+   "name": "Maize",
+   "share": 23.832,
+   "ha": 44009866.6667
+  },
+  "IDN": {
+   "name": "Oil palm",
+   "share": 33.4315,
+   "ha": 14143333.3333
+  },
+  "MYS": {
+   "name": "Oil palm",
+   "share": 70.2217,
+   "ha": 5107995.3333
+  },
+  "CIV": {
+   "name": "Cocoa beans",
+   "share": 29.4121,
+   "ha": 4050082.6667
+  },
+  "GHA": {
+   "name": "Maize",
+   "share": 16.2538,
+   "ha": 1322874.3333
+  },
+  "NGA": {
+   "name": "Cassava",
+   "share": 15.9739,
+   "ha": 10297975.0
+  },
+  "RUS": {
+   "name": "Wheat",
+   "share": 42.9821,
+   "ha": 28360666.3333
+  },
+  "UKR": {
+   "name": "Sunflower",
+   "share": 23.5664,
+   "ha": 5155933.3333
+  },
+  "AUS": {
+   "name": "Wheat",
+   "share": 46.7381,
+   "ha": 12164094.3333
+  },
+  "CAN": {
+   "name": "Wheat",
+   "share": 33.7114,
+   "ha": 10490700.0
+  },
+  "ESP": {
+   "name": "Olives",
+   "share": 21.0667,
+   "ha": 2644023.3333
+  },
+  "ITA": {
+   "name": "Wheat",
+   "share": 28.0981,
+   "ha": 1780680.0
+  },
+  "DEU": {
+   "name": "Wheat",
+   "share": 33.5787,
+   "ha": 2831300.0
+  },
+  "THA": {
+   "name": "Rice",
+   "share": 50.3618,
+   "ha": 11209676.6667
+  },
+  "VNM": {
+   "name": "Rice",
+   "share": 52.4931,
+   "ha": 7089041.0
+  },
+  "BGD": {
+   "name": "Rice",
+   "share": 69.8036,
+   "ha": 11562454.0
+  },
+  "PAK": {
+   "name": "Wheat",
+   "share": 40.3989,
+   "ha": 9247945.6667
+  },
+  "ETH": {
+   "name": "Maize",
+   "share": 19.1977,
+   "ha": 3390901.0
+  },
+  "KAZ": {
+   "name": "Wheat",
+   "share": 64.2162,
+   "ha": 13028916.6667
+  },
+  "TUN": {
+   "name": "Olives",
+   "share": 56.107,
+   "ha": 1975689.3333
+  },
+  "EGY": {
+   "name": "Wheat",
+   "share": 23.3908,
+   "ha": 1387033.3333
+  },
+  "COD": {
+   "name": "Cassava",
+   "share": 38.273,
+   "ha": 5544036.6667
+  },
+  "IRL": {
+   "name": "Barley",
+   "share": 58.5547,
+   "ha": 186006.6667
+  }
+ },
+ "spec": {
+  "n_countries": 152,
+  "min_country_ha": 100000,
+  "GBR": {
+   "name": "Field and broad beans",
+   "lq": 23.8476,
+   "share": 4.4832,
+   "wshare": 6.7301,
+   "ha": 187097.0
+  },
+  "IRL": {
+   "name": "Field and broad beans",
+   "lq": 24.4757,
+   "share": 4.6013,
+   "wshare": 0.5258,
+   "ha": 14616.6667
+  },
+  "FRA": {
+   "name": "Flax",
+   "lq": 58.194,
+   "share": 1.0349,
+   "wshare": 52.8902,
+   "ha": 139083.3333
+  },
+  "ESP": {
+   "name": "Almonds",
+   "lq": 38.1485,
+   "share": 6.0907,
+   "wshare": 32.3778,
+   "ha": 764423.3333
+  },
+  "ITA": {
+   "name": "Grapes",
+   "lq": 24.7222,
+   "share": 11.2509,
+   "wshare": 10.5949,
+   "ha": 713010.0
+  },
+  "NLD": {
+   "name": "Sugar beet",
+   "lq": 50.7047,
+   "share": 15.4143,
+   "wshare": 1.8294,
+   "ha": 82240.0
+  },
+  "DEU": {
+   "name": "Rye",
+   "lq": 26.1278,
+   "share": 6.9162,
+   "wshare": 14.898,
+   "ha": 583166.6667
+  },
+  "BEL": {
+   "name": "Flax",
+   "lq": 157.1315,
+   "share": 2.7942,
+   "wshare": 6.1668,
+   "ha": 16216.6667
+  },
+  "DNK": {
+   "name": "Rye",
+   "lq": 25.9476,
+   "share": 6.8685,
+   "wshare": 2.8067,
+   "ha": 109866.6667
+  },
+  "POL": {
+   "name": "Triticale",
+   "lq": 52.8392,
+   "share": 12.3336,
+   "wshare": 34.5814,
+   "ha": 1193640.0
+  },
+  "USA": {
+   "name": "Soya beans",
+   "lq": 3.7051,
+   "share": 34.7369,
+   "wshare": 24.7624,
+   "ha": 34330526.6667
+  },
+  "CAN": {
+   "name": "Lentils",
+   "lq": 12.9577,
+   "share": 5.2146,
+   "wshare": 27.2683,
+   "ha": 1622733.3333
+  },
+  "MEX": {
+   "name": "Avocados",
+   "lq": 25.3363,
+   "share": 1.6443,
+   "wshare": 25.7885,
+   "ha": 247495.0
+  },
+  "BRA": {
+   "name": "Sugar cane",
+   "lq": 5.8079,
+   "share": 10.4368,
+   "wshare": 37.5981,
+   "ha": 9991011.6667
+  },
+  "ARG": {
+   "name": "Soya beans",
+   "lq": 4.3575,
+   "share": 40.8529,
+   "wshare": 11.2046,
+   "ha": 15534093.6667
+  },
+  "PER": {
+   "name": "Quinoa",
+   "lq": 132.8237,
+   "share": 1.6263,
+   "wshare": 31.8581,
+   "ha": 57681.0
+  },
+  "IND": {
+   "name": "Pigeon peas",
+   "lq": 5.4682,
+   "share": 1.9712,
+   "wshare": 77.5252,
+   "ha": 4132765.6667
+  },
+  "CHN": {
+   "name": "Plums",
+   "lq": 6.0546,
+   "share": 1.0817,
+   "wshare": 75.61,
+   "ha": 1997551.0
+  },
+  "JPN": {
+   "name": "Buckwheat",
+   "lq": 16.6165,
+   "share": 2.3832,
+   "wshare": 3.17,
+   "ha": 67233.3333
+  },
+  "IDN": {
+   "name": "Cloves",
+   "lq": 28.6656,
+   "share": 1.3599,
+   "wshare": 82.0084,
+   "ha": 575317.0
+  },
+  "TUR": {
+   "name": "Hazelnuts",
+   "lq": 53.7289,
+   "share": 3.9356,
+   "wshare": 68.9498,
+   "ha": 746855.0
+  },
+  "IRN": {
+   "name": "Pistachios",
+   "lq": 30.9871,
+   "share": 2.1162,
+   "wshare": 24.6331,
+   "ha": 248764.3333
+  },
+  "ETH": {
+   "name": "Field and broad beans",
+   "lq": 15.2836,
+   "share": 2.8732,
+   "wshare": 18.2555,
+   "ha": 507502.3333
+  },
+  "NGA": {
+   "name": "Yams",
+   "lq": 16.6371,
+   "share": 11.942,
+   "wshare": 72.5301,
+   "ha": 7698700.6667
+  },
+  "KEN": {
+   "name": "Pigeon peas",
+   "lq": 10.3152,
+   "share": 3.7186,
+   "wshare": 4.443,
+   "ha": 236852.0
+  },
+  "EGY": {
+   "name": "Dates",
+   "lq": 14.8945,
+   "share": 1.3412,
+   "wshare": 5.9727,
+   "ha": 79533.3333
+  },
+  "AUS": {
+   "name": "Lupins",
+   "lq": 32.7797,
+   "share": 2.3202,
+   "wshare": 57.6919,
+   "ha": 603862.3333
+  },
+  "NZL": {
+   "name": "Kiwi fruit",
+   "lq": 313.7769,
+   "share": 5.7616,
+   "wshare": 5.3874,
+   "ha": 14628.6667
+  },
+  "UKR": {
+   "name": "Sunflower",
+   "lq": 11.9726,
+   "share": 23.5664,
+   "wshare": 17.7135,
+   "ha": 5155933.3333
+  },
+  "RUS": {
+   "name": "Buckwheat",
+   "lq": 10.3818,
+   "share": 1.489,
+   "wshare": 46.3236,
+   "ha": 982486.3333
+  },
+  "MAR": {
+   "name": "Figs",
+   "lq": 57.2179,
+   "share": 1.1623,
+   "wshare": 22.7199,
+   "ha": 68247.0
+  },
+  "CIV": {
+   "name": "Cocoa beans",
+   "lq": 38.9624,
+   "share": 29.4121,
+   "wshare": 36.2814,
+   "ha": 4050082.6667
+  },
+  "GHA": {
+   "name": "Kola nuts",
+   "lq": 29.0467,
+   "share": 1.0807,
+   "wshare": 15.9868,
+   "ha": 87960.0
+  },
+  "MDG": {
+   "name": "Vanilla",
+   "lq": 327.9507,
+   "share": 2.0741,
+   "wshare": 79.6754,
+   "ha": 74515.3333
+  },
+  "PNG": {
+   "name": "Green maize",
+   "lq": 29.5672,
+   "share": 2.1164,
+   "wshare": 2.3602,
+   "ha": 24983.0
+  },
+  "VNM": {
+   "name": "Cinnamon",
+   "lq": 57.2807,
+   "share": 1.4186,
+   "wshare": 52.3112,
+   "ha": 191574.6667
+  },
+  "THA": {
+   "name": "Rubber",
+   "lq": 17.9443,
+   "share": 16.0521,
+   "wshare": 27.0097,
+   "ha": 3572920.6667
+  },
+  "BOL": {
+   "name": "Quinoa",
+   "lq": 229.0156,
+   "share": 2.804,
+   "wshare": 67.7452,
+   "ha": 122656.6667
+  },
+  "LKA": {
+   "name": "Cinnamon",
+   "lq": 55.1063,
+   "share": 1.3647,
+   "wshare": 9.851,
+   "ha": 36076.3333
+  },
+  "SAU": {
+   "name": "Dates",
+   "lq": 373.6154,
+   "share": 33.6438,
+   "wshare": 16.2258,
+   "ha": 216065.6667
+  }
+ },
+ "leaders": {
+  "wheat": [
+   {
+    "iso": "IND",
+    "name": "India",
+    "pct": 14.2866
+   },
+   {
+    "iso": "RUS",
+    "name": "Russia",
+    "pct": 12.9737
+   },
+   {
+    "iso": "CHN",
+    "name": "China",
+    "pct": 10.7859
+   },
+   {
+    "iso": "USA",
+    "name": "United States",
+    "pct": 6.8636
+   },
+   {
+    "iso": "KAZ",
+    "name": "Kazakhstan",
+    "pct": 5.9601
+   }
+  ],
+  "maize": [
+   {
+    "iso": "CHN",
+    "name": "China",
+    "pct": 21.0972
+   },
+   {
+    "iso": "USA",
+    "name": "United States",
+    "pct": 16.0445
+   },
+   {
+    "iso": "BRA",
+    "name": "Brazil",
+    "pct": 10.3175
+   },
+   {
+    "iso": "IND",
+    "name": "India",
+    "pct": 5.2084
+   },
+   {
+    "iso": "ARG",
+    "name": "Argentina",
+    "pct": 4.0922
+   }
+  ],
+  "rice": [
+   {
+    "iso": "IND",
+    "name": "India",
+    "pct": 28.4998
+   },
+   {
+    "iso": "CHN",
+    "name": "China",
+    "pct": 17.2608
+   },
+   {
+    "iso": "BGD",
+    "name": "Bangladesh",
+    "pct": 6.85
+   },
+   {
+    "iso": "THA",
+    "name": "Thailand",
+    "pct": 6.641
+   },
+   {
+    "iso": "IDN",
+    "name": "Indonesia",
+    "pct": 6.0651
+   }
+  ],
+  "barley": [
+   {
+    "iso": "RUS",
+    "name": "Russia",
+    "pct": 16.298
+   },
+   {
+    "iso": "AUS",
+    "name": "Australia",
+    "pct": 9.1855
+   },
+   {
+    "iso": "TUR",
+    "name": "Türkiye",
+    "pct": 7.1389
+   },
+   {
+    "iso": "CAN",
+    "name": "Canada",
+    "pct": 5.7143
+   },
+   {
+    "iso": "ESP",
+    "name": "Spain",
+    "pct": 5.1763
+   }
+  ],
+  "sorghum": [
+   {
+    "iso": "SDN",
+    "name": "Sudan",
+    "pct": 17.4754
+   },
+   {
+    "iso": "NGA",
+    "name": "Nigeria",
+    "pct": 14.0572
+   },
+   {
+    "iso": "IND",
+    "name": "India",
+    "pct": 9.4546
+   },
+   {
+    "iso": "NER",
+    "name": "Niger",
+    "pct": 8.6362
+   },
+   {
+    "iso": "USA",
+    "name": "United States",
+    "pct": 5.2955
+   }
+  ],
+  "millet": [
+   {
+    "iso": "IND",
+    "name": "India",
+    "pct": 28.6621
+   },
+   {
+    "iso": "NER",
+    "name": "Niger",
+    "pct": 21.863
+   },
+   {
+    "iso": "SDN",
+    "name": "Sudan",
+    "pct": 10.1344
+   },
+   {
+    "iso": "MLI",
+    "name": "Mali",
+    "pct": 6.8675
+   },
+   {
+    "iso": "NGA",
+    "name": "Nigeria",
+    "pct": 6.3475
+   }
+  ],
+  "oats": [
+   {
+    "iso": "RUS",
+    "name": "Russia",
+    "pct": 21.3705
+   },
+   {
+    "iso": "CAN",
+    "name": "Canada",
+    "pct": 12.5054
+   },
+   {
+    "iso": "AUS",
+    "name": "Australia",
+    "pct": 7.1933
+   },
+   {
+    "iso": "BRA",
+    "name": "Brazil",
+    "pct": 6.2923
+   },
+   {
+    "iso": "POL",
+    "name": "Poland",
+    "pct": 5.7579
+   }
+  ],
+  "rye": [
+   {
+    "iso": "RUS",
+    "name": "Russia",
+    "pct": 19.1839
+   },
+   {
+    "iso": "POL",
+    "name": "Poland",
+    "pct": 17.6491
+   },
+   {
+    "iso": "DEU",
+    "name": "Germany",
+    "pct": 14.898
+   },
+   {
+    "iso": "BLR",
+    "name": "Belarus",
+    "pct": 8.456
+   },
+   {
+    "iso": "CHN",
+    "name": "China",
+    "pct": 4.2775
+   }
+  ],
+  "soybean": [
+   {
+    "iso": "BRA",
+    "name": "Brazil",
+    "pct": 31.5867
+   },
+   {
+    "iso": "USA",
+    "name": "United States",
+    "pct": 24.7624
+   },
+   {
+    "iso": "ARG",
+    "name": "Argentina",
+    "pct": 11.2046
+   },
+   {
+    "iso": "IND",
+    "name": "India",
+    "pct": 9.4437
+   },
+   {
+    "iso": "CHN",
+    "name": "China",
+    "pct": 7.4624
+   }
+  ],
+  "rapeseed": [
+   {
+    "iso": "CAN",
+    "name": "Canada",
+    "pct": 20.7565
+   },
+   {
+    "iso": "IND",
+    "name": "India",
+    "pct": 20.5413
+   },
+   {
+    "iso": "CHN",
+    "name": "China",
+    "pct": 18.1232
+   },
+   {
+    "iso": "AUS",
+    "name": "Australia",
+    "pct": 9.0839
+   },
+   {
+    "iso": "RUS",
+    "name": "Russia",
+    "pct": 5.4646
+   }
+  ],
+  "sunflower": [
+   {
+    "iso": "RUS",
+    "name": "Russia",
+    "pct": 33.1335
+   },
+   {
+    "iso": "UKR",
+    "name": "Ukraine",
+    "pct": 17.7135
+   },
+   {
+    "iso": "ARG",
+    "name": "Argentina",
+    "pct": 7.1627
+   },
+   {
+    "iso": "KAZ",
+    "name": "Kazakhstan",
+    "pct": 3.9787
+   },
+   {
+    "iso": "ROU",
+    "name": "Romania",
+    "pct": 3.9101
+   }
+  ],
+  "groundnut": [
+   {
+    "iso": "IND",
+    "name": "India",
+    "pct": 16.7529
+   },
+   {
+    "iso": "CHN",
+    "name": "China",
+    "pct": 15.5431
+   },
+   {
+    "iso": "NGA",
+    "name": "Nigeria",
+    "pct": 11.1665
+   },
+   {
+    "iso": "SDN",
+    "name": "Sudan",
+    "pct": 9.2557
+   },
+   {
+    "iso": "SEN",
+    "name": "Senegal",
+    "pct": 4.0615
+   }
+  ],
+  "sesame": [
+   {
+    "iso": "SDN",
+    "name": "Sudan",
+    "pct": 22.8463
+   },
+   {
+    "iso": "MMR",
+    "name": "Myanmar",
+    "pct": 13.5193
+   },
+   {
+    "iso": "IND",
+    "name": "India",
+    "pct": 12.1396
+   },
+   {
+    "iso": "SSD",
+    "name": "South Sudan",
+    "pct": 5.389
+   },
+   {
+    "iso": "ETH",
+    "name": "Ethiopia",
+    "pct": 4.9749
+   }
+  ],
+  "bean": [
+   {
+    "iso": "IND",
+    "name": "India",
+    "pct": 34.8409
+   },
+   {
+    "iso": "MMR",
+    "name": "Myanmar",
+    "pct": 8.2575
+   },
+   {
+    "iso": "BRA",
+    "name": "Brazil",
+    "pct": 7.7427
+   },
+   {
+    "iso": "KEN",
+    "name": "Kenya",
+    "pct": 3.7236
+   },
+   {
+    "iso": "MEX",
+    "name": "Mexico",
+    "pct": 3.5809
+   }
+  ],
+  "chickpea": [
+   {
+    "iso": "IND",
+    "name": "India",
+    "pct": 72.2323
+   },
+   {
+    "iso": "PAK",
+    "name": "Pakistan",
+    "pct": 5.8666
+   },
+   {
+    "iso": "AUS",
+    "name": "Australia",
+    "pct": 3.7774
+   },
+   {
+    "iso": "TUR",
+    "name": "Türkiye",
+    "pct": 3.2241
+   },
+   {
+    "iso": "IRN",
+    "name": "Iran",
+    "pct": 3.0376
+   }
+  ],
+  "cowpea": [
+   {
+    "iso": "NER",
+    "name": "Niger",
+    "pct": 35.9673
+   },
+   {
+    "iso": "NGA",
+    "name": "Nigeria",
+    "pct": 32.0059
+   },
+   {
+    "iso": "BFA",
+    "name": "Burkina Faso",
+    "pct": 10.0935
+   },
+   {
+    "iso": "CMR",
+    "name": "Cameroon",
+    "pct": 3.2785
+   },
+   {
+    "iso": "MLI",
+    "name": "Mali",
+    "pct": 3.1082
+   }
+  ],
+  "lentil": [
+   {
+    "iso": "CAN",
+    "name": "Canada",
+    "pct": 27.2683
+   },
+   {
+    "iso": "IND",
+    "name": "India",
+    "pct": 26.838
+   },
+   {
+    "iso": "AUS",
+    "name": "Australia",
+    "pct": 15.2031
+   },
+   {
+    "iso": "TUR",
+    "name": "Türkiye",
+    "pct": 5.0843
+   },
+   {
+    "iso": "USA",
+    "name": "United States",
+    "pct": 4.6356
+   }
+  ],
+  "pea": [
+   {
+    "iso": "RUS",
+    "name": "Russia",
+    "pct": 21.6812
+   },
+   {
+    "iso": "CAN",
+    "name": "Canada",
+    "pct": 17.3642
+   },
+   {
+    "iso": "CHN",
+    "name": "China",
+    "pct": 12.7177
+   },
+   {
+    "iso": "IND",
+    "name": "India",
+    "pct": 10.7629
+   },
+   {
+    "iso": "USA",
+    "name": "United States",
+    "pct": 5.0678
+   }
+  ],
+  "cassava": [
+   {
+    "iso": "NGA",
+    "name": "Nigeria",
+    "pct": 31.1692
+   },
+   {
+    "iso": "COD",
+    "name": "DR Congo",
+    "pct": 16.7803
+   },
+   {
+    "iso": "TZA",
+    "name": "Tanzania",
+    "pct": 5.2057
+   },
+   {
+    "iso": "THA",
+    "name": "Thailand",
+    "pct": 4.53
+   },
+   {
+    "iso": "CIV",
+    "name": "Côte d'Ivoire",
+    "pct": 3.9017
+   }
+  ],
+  "potato": [
+   {
+    "iso": "CHN",
+    "name": "China",
+    "pct": 26.8367
+   },
+   {
+    "iso": "IND",
+    "name": "India",
+    "pct": 13.5131
+   },
+   {
+    "iso": "UKR",
+    "name": "Ukraine",
+    "pct": 7.1134
+   },
+   {
+    "iso": "RUS",
+    "name": "Russia",
+    "pct": 6.3497
+   },
+   {
+    "iso": "BGD",
+    "name": "Bangladesh",
+    "pct": 2.7035
+   }
+  ],
+  "yam": [
+   {
+    "iso": "NGA",
+    "name": "Nigeria",
+    "pct": 72.5301
+   },
+   {
+    "iso": "CIV",
+    "name": "Côte d'Ivoire",
+    "pct": 13.4408
+   },
+   {
+    "iso": "GHA",
+    "name": "Ghana",
+    "pct": 5.2928
+   },
+   {
+    "iso": "BEN",
+    "name": "Benin",
+    "pct": 2.4146
+   },
+   {
+    "iso": "TGO",
+    "name": "Togo",
+    "pct": 1.0264
+   }
+  ],
+  "sugarcane": [
+   {
+    "iso": "BRA",
+    "name": "Brazil",
+    "pct": 37.5981
+   },
+   {
+    "iso": "IND",
+    "name": "India",
+    "pct": 21.0743
+   },
+   {
+    "iso": "THA",
+    "name": "Thailand",
+    "pct": 5.716
+   },
+   {
+    "iso": "CHN",
+    "name": "China",
+    "pct": 4.7877
+   },
+   {
+    "iso": "PAK",
+    "name": "Pakistan",
+    "pct": 4.6315
+   }
+  ],
+  "sugarbeet": [
+   {
+    "iso": "RUS",
+    "name": "Russia",
+    "pct": 22.4588
+   },
+   {
+    "iso": "USA",
+    "name": "United States",
+    "pct": 10.0533
+   },
+   {
+    "iso": "DEU",
+    "name": "Germany",
+    "pct": 9.1151
+   },
+   {
+    "iso": "FRA",
+    "name": "France",
+    "pct": 8.8518
+   },
+   {
+    "iso": "TUR",
+    "name": "Türkiye",
+    "pct": 7.2945
+   }
+  ],
+  "oilpalm": [
+   {
+    "iso": "IDN",
+    "name": "Indonesia",
+    "pct": 49.1024
+   },
+   {
+    "iso": "MYS",
+    "name": "Malaysia",
+    "pct": 17.7338
+   },
+   {
+    "iso": "NGA",
+    "name": "Nigeria",
+    "pct": 15.4169
+   },
+   {
+    "iso": "THA",
+    "name": "Thailand",
+    "pct": 3.4604
+   },
+   {
+    "iso": "COL",
+    "name": "Colombia",
+    "pct": 1.7374
+   }
+  ],
+  "coconut": [
+   {
+    "iso": "PHL",
+    "name": "Philippines",
+    "pct": 32.9326
+   },
+   {
+    "iso": "IDN",
+    "name": "Indonesia",
+    "pct": 25.202
+   },
+   {
+    "iso": "IND",
+    "name": "India",
+    "pct": 19.7432
+   },
+   {
+    "iso": "LKA",
+    "name": "Sri Lanka",
+    "pct": 4.2659
+   },
+   {
+    "iso": "BRA",
+    "name": "Brazil",
+    "pct": 1.6861
+   }
+  ],
+  "coffee": [
+   {
+    "iso": "BRA",
+    "name": "Brazil",
+    "pct": 15.4267
+   },
+   {
+    "iso": "IDN",
+    "name": "Indonesia",
+    "pct": 10.2604
+   },
+   {
+    "iso": "COL",
+    "name": "Colombia",
+    "pct": 6.8043
+   },
+   {
+    "iso": "ETH",
+    "name": "Ethiopia",
+    "pct": 6.7491
+   },
+   {
+    "iso": "UGA",
+    "name": "Uganda",
+    "pct": 6.7426
+   }
+  ],
+  "cocoa": [
+   {
+    "iso": "CIV",
+    "name": "Côte d'Ivoire",
+    "pct": 36.2814
+   },
+   {
+    "iso": "IDN",
+    "name": "Indonesia",
+    "pct": 12.5449
+   },
+   {
+    "iso": "NGA",
+    "name": "Nigeria",
+    "pct": 11.0026
+   },
+   {
+    "iso": "GHA",
+    "name": "Ghana",
+    "pct": 9.8203
+   },
+   {
+    "iso": "CMR",
+    "name": "Cameroon",
+    "pct": 5.567
+   }
+  ],
+  "tea": [
+   {
+    "iso": "CHN",
+    "name": "China",
+    "pct": 64.8087
+   },
+   {
+    "iso": "IND",
+    "name": "India",
+    "pct": 11.4967
+   },
+   {
+    "iso": "LKA",
+    "name": "Sri Lanka",
+    "pct": 4.9894
+   },
+   {
+    "iso": "KEN",
+    "name": "Kenya",
+    "pct": 4.2279
+   },
+   {
+    "iso": "VNM",
+    "name": "Vietnam",
+    "pct": 2.0917
+   }
+  ],
+  "rubber": [
+   {
+    "iso": "THA",
+    "name": "Thailand",
+    "pct": 27.0097
+   },
+   {
+    "iso": "IDN",
+    "name": "Indonesia",
+    "pct": 24.8435
+   },
+   {
+    "iso": "MYS",
+    "name": "Malaysia",
+    "pct": 8.581
+   },
+   {
+    "iso": "CIV",
+    "name": "Côte d'Ivoire",
+    "pct": 7.076
+   },
+   {
+    "iso": "CHN",
+    "name": "China",
+    "pct": 5.6161
+   }
+  ],
+  "olive": [
+   {
+    "iso": "ESP",
+    "name": "Spain",
+    "pct": 23.6914
+   },
+   {
+    "iso": "TUN",
+    "name": "Tunisia",
+    "pct": 17.7029
+   },
+   {
+    "iso": "MAR",
+    "name": "Morocco",
+    "pct": 10.7529
+   },
+   {
+    "iso": "ITA",
+    "name": "Italy",
+    "pct": 9.6759
+   },
+   {
+    "iso": "TUR",
+    "name": "Türkiye",
+    "pct": 8.1166
+   }
+  ],
+  "grape": [
+   {
+    "iso": "ESP",
+    "name": "Spain",
+    "pct": 13.5711
+   },
+   {
+    "iso": "FRA",
+    "name": "France",
+    "pct": 11.1555
+   },
+   {
+    "iso": "CHN",
+    "name": "China",
+    "pct": 10.9121
+   },
+   {
+    "iso": "ITA",
+    "name": "Italy",
+    "pct": 10.5949
+   },
+   {
+    "iso": "TUR",
+    "name": "Türkiye",
+    "pct": 5.6202
+   }
+  ],
+  "banana": [
+   {
+    "iso": "IND",
+    "name": "India",
+    "pct": 16.4335
+   },
+   {
+    "iso": "NGA",
+    "name": "Nigeria",
+    "pct": 8.4012
+   },
+   {
+    "iso": "BRA",
+    "name": "Brazil",
+    "pct": 7.8465
+   },
+   {
+    "iso": "TZA",
+    "name": "Tanzania",
+    "pct": 5.4112
+   },
+   {
+    "iso": "CHN",
+    "name": "China",
+    "pct": 5.4048
+   }
+  ],
+  "plantain": [
+   {
+    "iso": "UGA",
+    "name": "Uganda",
+    "pct": 37.0158
+   },
+   {
+    "iso": "COD",
+    "name": "DR Congo",
+    "pct": 15.4027
+   },
+   {
+    "iso": "CIV",
+    "name": "Côte d'Ivoire",
+    "pct": 8.4428
+   },
+   {
+    "iso": "CMR",
+    "name": "Cameroon",
+    "pct": 7.3776
+   },
+   {
+    "iso": "GHA",
+    "name": "Ghana",
+    "pct": 5.5998
+   }
+  ],
+  "cotton": [
+   {
+    "iso": "IND",
+    "name": "India",
+    "pct": 39.1122
+   },
+   {
+    "iso": "USA",
+    "name": "United States",
+    "pct": 9.663
+   },
+   {
+    "iso": "CHN",
+    "name": "China",
+    "pct": 9.1042
+   },
+   {
+    "iso": "PAK",
+    "name": "Pakistan",
+    "pct": 6.9763
+   },
+   {
+    "iso": "BRA",
+    "name": "Brazil",
+    "pct": 5.6453
+   }
+  ]
+ },
+ "belts": {
+  "cocoa_civ_gha": 46.1018,
+  "palm_idn_mys": 66.8361,
+  "soy_bra_usa_arg": 67.5538,
+  "rice_ind_chn": 45.7607,
+  "rubber_tha_idn": 51.8532,
+  "olive_esp": 23.6914,
+  "rice_asia": 84.895,
+  "cocoa_wafrica": 65.6171,
+  "soy_americas": 73.6736,
+  "maize_americas": 31.9317
+ },
+ "land": {
+  "crop_2023": 1582943003.5,
+  "crop_1961": 1339523823.2,
+  "past_2023": 3100807557.2,
+  "past_1961": 3178767041.3,
+  "agri_2023": 4681604991.9,
+  "land_2023": 13004586619.8,
+  "forest_2023": 4145400210.0,
+  "agri_peak_year": 2000,
+  "agri_peak": 4792272486.5,
+  "past_peak_year": 2000,
+  "past_peak": 3297896804.4,
+  "crop_peak_year": 2023,
+  "crop_share": 12.1722,
+  "past_share": 23.844,
+  "agri_share": 35.9996,
+  "forest_share": 31.8764,
+  "crop_chg_pct": 18.1721,
+  "past_of_agri": 66.2339,
+  "crop_of_agri": 33.812,
+  "crop_gain_mha": 243.4192,
+  "agri_since_peak_mha": 110.6675,
+  "world_series": {
+   "crop": [
+    1339.5,
+    1342.5,
+    1348.6,
+    1350.2,
+    1354.0,
+    1353.8,
+    1355.7,
+    1368.1,
+    1376.6,
+    1375.5,
+    1373.2,
+    1379.4,
+    1382.1,
+    1385.1,
+    1386.2,
+    1393.3,
+    1399.9,
+    1411.5,
+    1418.3,
+    1422.5,
+    1427.1,
+    1437.8,
+    1444.2,
+    1460.9,
+    1475.4,
+    1478.9,
+    1482.2,
+    1482.0,
+    1482.5,
+    1485.1,
+    1487.9,
+    1485.1,
+    1486.3,
+    1485.0,
+    1486.3,
+    1486.8,
+    1491.4,
+    1491.9,
+    1495.8,
+    1494.3,
+    1495.6,
+    1493.9,
+    1499.3,
+    1505.5,
+    1511.1,
+    1510.7,
+    1512.4,
+    1513.8,
+    1519.9,
+    1526.6,
+    1535.1,
+    1541.3,
+    1545.8,
+    1551.9,
+    1559.7,
+    1562.5,
+    1568.2,
+    1572.5,
+    1571.3,
+    1577.2,
+    1582.2,
+    1581.2,
+    1582.9
+   ],
+   "past": [
+    3178.8,
+    3182.1,
+    3181.5,
+    3184.9,
+    3191.1,
+    3192.4,
+    3195.4,
+    3217.8,
+    3218.1,
+    3202.6,
+    3215.1,
+    3219.1,
+    3222.1,
+    3226.6,
+    3227.6,
+    3217.0,
+    3211.2,
+    3211.2,
+    3207.6,
+    3212.4,
+    3208.7,
+    3208.9,
+    3205.9,
+    3210.8,
+    3220.5,
+    3211.5,
+    3218.5,
+    3230.7,
+    3236.6,
+    3238.6,
+    3234.2,
+    3270.6,
+    3248.0,
+    3264.5,
+    3262.4,
+    3269.7,
+    3283.2,
+    3295.6,
+    3292.8,
+    3297.9,
+    3296.4,
+    3288.6,
+    3264.1,
+    3216.2,
+    3217.3,
+    3214.9,
+    3202.4,
+    3187.2,
+    3175.1,
+    3172.4,
+    3182.1,
+    3171.9,
+    3155.2,
+    3150.0,
+    3120.6,
+    3112.0,
+    3136.2,
+    3118.1,
+    3118.2,
+    3108.1,
+    3113.0,
+    3107.7,
+    3100.8
+   ],
+   "forest": [
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    4343.5,
+    4332.8,
+    4322.1,
+    4311.4,
+    4300.7,
+    4290.1,
+    4279.4,
+    4268.7,
+    4258.0,
+    4247.3,
+    4236.6,
+    4233.0,
+    4229.5,
+    4225.9,
+    4222.3,
+    4218.8,
+    4215.2,
+    4211.7,
+    4208.1,
+    4204.6,
+    4201.0,
+    4197.1,
+    4193.2,
+    4189.3,
+    4185.3,
+    4181.4,
+    4178.2,
+    4175.0,
+    4171.7,
+    4168.5,
+    4165.2,
+    4160.2,
+    4155.2,
+    4145.4
+   ],
+   "agri": [
+    4518.5,
+    4524.8,
+    4530.3,
+    4535.4,
+    4544.9,
+    4548.7,
+    4556.4,
+    4586.8,
+    4588.9,
+    4578.4,
+    4588.6,
+    4598.8,
+    4604.5,
+    4612.0,
+    4614.0,
+    4610.4,
+    4611.1,
+    4622.7,
+    4625.9,
+    4635.0,
+    4635.9,
+    4646.8,
+    4650.0,
+    4671.7,
+    4695.8,
+    4690.4,
+    4700.7,
+    4712.7,
+    4719.0,
+    4723.7,
+    4722.2,
+    4755.6,
+    4734.2,
+    4749.4,
+    4748.8,
+    4756.6,
+    4774.7,
+    4787.6,
+    4788.8,
+    4792.3,
+    4792.2,
+    4782.7,
+    4763.5,
+    4721.8,
+    4728.6,
+    4725.8,
+    4715.1,
+    4701.2,
+    4695.2,
+    4699.3,
+    4717.5,
+    4713.4,
+    4701.1,
+    4701.9,
+    4680.2,
+    4674.4,
+    4704.1,
+    4690.7,
+    4689.8,
+    4685.3,
+    4696.3,
+    4691.2,
+    4681.6
+   ]
+  },
+  "years": [
+   1961,
+   1962,
+   1963,
+   1964,
+   1965,
+   1966,
+   1967,
+   1968,
+   1969,
+   1970,
+   1971,
+   1972,
+   1973,
+   1974,
+   1975,
+   1976,
+   1977,
+   1978,
+   1979,
+   1980,
+   1981,
+   1982,
+   1983,
+   1984,
+   1985,
+   1986,
+   1987,
+   1988,
+   1989,
+   1990,
+   1991,
+   1992,
+   1993,
+   1994,
+   1995,
+   1996,
+   1997,
+   1998,
+   1999,
+   2000,
+   2001,
+   2002,
+   2003,
+   2004,
+   2005,
+   2006,
+   2007,
+   2008,
+   2009,
+   2010,
+   2011,
+   2012,
+   2013,
+   2014,
+   2015,
+   2016,
+   2017,
+   2018,
+   2019,
+   2020,
+   2021,
+   2022,
+   2023
+  ],
+  "year": 2023,
+  "forest_first_year": 1990,
+  "n_countries": 215,
+  "top_crop_pct": [
+   {
+    "iso": "RWA",
+    "name": "Rwanda",
+    "v": 69.9621
+   },
+   {
+    "iso": "BGD",
+    "name": "Bangladesh",
+    "v": 67.5962
+   },
+   {
+    "iso": "MDA",
+    "name": "Moldova",
+    "v": 64.8952
+   },
+   {
+    "iso": "GMB",
+    "name": "Gambia",
+    "v": 60.5998
+   },
+   {
+    "iso": "DNK",
+    "name": "Denmark",
+    "v": 59.875
+   }
+  ],
+  "top_past_pct": [
+   {
+    "iso": "TKM",
+    "name": "Turkmenistan",
+    "v": 80.7501
+   },
+   {
+    "iso": "SAU",
+    "name": "Saudi Arabia",
+    "v": 79.0812
+   },
+   {
+    "iso": "URY",
+    "name": "Uruguay",
+    "v": 74.2414
+   },
+   {
+    "iso": "LSO",
+    "name": "Lesotho",
+    "v": 73.6825
+   },
+   {
+    "iso": "DJI",
+    "name": "Djibouti",
+    "v": 73.3391
+   }
+  ],
+  "top_crop_kha": [
+   {
+    "iso": "IND",
+    "name": "India",
+    "v": 168323.0
+   },
+   {
+    "iso": "USA",
+    "name": "United States",
+    "v": 154734.13
+   },
+   {
+    "iso": "CHN",
+    "name": "China",
+    "v": 128608.0
+   },
+   {
+    "iso": "RUS",
+    "name": "Russia",
+    "v": 123649.0
+   },
+   {
+    "iso": "BRA",
+    "name": "Brazil",
+    "v": 63564.59
+   },
+   {
+    "iso": "ARG",
+    "name": "Argentina",
+    "v": 48290.678
+   }
+  ],
+  "top_crop_pp": [
+   {
+    "iso": "KAZ",
+    "name": "Kazakhstan",
+    "v": 1.5
+   },
+   {
+    "iso": "AUS",
+    "name": "Australia",
+    "v": 1.2
+   },
+   {
+    "iso": "ARG",
+    "name": "Argentina",
+    "v": 1.06
+   },
+   {
+    "iso": "CAN",
+    "name": "Canada",
+    "v": 0.97
+   },
+   {
+    "iso": "UKR",
+    "name": "Ukraine",
+    "v": 0.9
+   }
+  ],
+  "n_since_1961": 181,
+  "top_gain_kha": [
+   {
+    "iso": "BRA",
+    "name": "Brazil",
+    "v": 31490.53
+   },
+   {
+    "iso": "ARG",
+    "name": "Argentina",
+    "v": 28428.567
+   },
+   {
+    "iso": "IDN",
+    "name": "Indonesia",
+    "v": 24629.3433
+   },
+   {
+    "iso": "CHN",
+    "name": "China",
+    "v": 23789.3333
+   },
+   {
+    "iso": "NGA",
+    "name": "Nigeria",
+    "v": 16780.4767
+   },
+   {
+    "iso": "AUS",
+    "name": "Australia",
+    "v": 16380.1294
+   }
+  ],
+  "top_loss_kha": [
+   {
+    "iso": "USA",
+    "name": "United States",
+    "v": -25866.695
+   },
+   {
+    "iso": "ITA",
+    "name": "Italy",
+    "v": -6143.4815
+   },
+   {
+    "iso": "POL",
+    "name": "Poland",
+    "v": -4567.0
+   },
+   {
+    "iso": "ESP",
+    "name": "Spain",
+    "v": -4135.0501
+   },
+   {
+    "iso": "FRA",
+    "name": "France",
+    "v": -3319.1262
+   },
+   {
+    "iso": "CHL",
+    "name": "Chile",
+    "v": -1884.6933
+   }
+  ],
+  "top_gain_pct": [
+   {
+    "iso": "PRY",
+    "name": "Paraguay",
+    "v": 461.0595
+   },
+   {
+    "iso": "CIV",
+    "name": "Côte d'Ivoire",
+    "v": 357.455
+   },
+   {
+    "iso": "BEN",
+    "name": "Benin",
+    "v": 327.4308
+   },
+   {
+    "iso": "MLI",
+    "name": "Mali",
+    "v": 326.4067
+   },
+   {
+    "iso": "SLE",
+    "name": "Sierra Leone",
+    "v": 321.4458
+   }
+  ],
+  "n_grew": 110,
+  "n_shrank": 68,
+  "GBR": {
+   "crop_pct": 25.1568,
+   "past_pct": 45.1505,
+   "forest_pct": 13.4452,
+   "agri_pct": 70.3073,
+   "crop_ha_pp": 0.09,
+   "crop_chg_pct": -17.3224,
+   "crop_kha": 6086.1833,
+   "past_kha": 10923.2673,
+   "crop_first_year": 1961.0
+  },
+  "BRA": {
+   "crop_pct": 7.6051,
+   "past_pct": 20.7416,
+   "forest_pct": 58.9364,
+   "agri_pct": 28.3467,
+   "crop_ha_pp": 0.3,
+   "crop_chg_pct": 98.4972,
+   "crop_kha": 63564.59,
+   "past_kha": 173360.8,
+   "crop_first_year": 1961.0
+  },
+  "IDN": {
+   "crop_pct": 23.0925,
+   "past_pct": 5.8127,
+   "forest_pct": 50.6266,
+   "agri_pct": 28.9052,
+   "crop_ha_pp": 0.16,
+   "crop_chg_pct": 128.4763,
+   "crop_kha": 43700.44,
+   "past_kha": 11000.0,
+   "crop_first_year": 1961.0
+  },
+  "ARG": {
+   "crop_pct": 17.6457,
+   "past_pct": 28.0871,
+   "forest_pct": 17.1583,
+   "agri_pct": 45.7328,
+   "crop_ha_pp": 1.06,
+   "crop_chg_pct": 142.0978,
+   "crop_kha": 48290.678,
+   "past_kha": 76865.7352,
+   "crop_first_year": 1961.0
+  },
+  "USA": {
+   "crop_pct": 16.9156,
+   "past_pct": 29.1674,
+   "forest_pct": 33.7843,
+   "agri_pct": 46.083,
+   "crop_ha_pp": 0.45,
+   "crop_chg_pct": -14.2925,
+   "crop_kha": 154734.13,
+   "past_kha": 266806.24,
+   "crop_first_year": 1961.0
+  },
+  "IND": {
+   "crop_pct": 56.6136,
+   "past_pct": 3.4468,
+   "forest_pct": 24.4071,
+   "agri_pct": 60.0604,
+   "crop_ha_pp": 0.12,
+   "crop_chg_pct": 3.9672,
+   "crop_kha": 168323.0,
+   "past_kha": 10248.0,
+   "crop_first_year": 1961.0
+  },
+  "CHN": {
+   "crop_pct": 13.6989,
+   "past_pct": 28.0368,
+   "forest_pct": 23.8524,
+   "agri_pct": 41.7356,
+   "crop_ha_pp": 0.09,
+   "crop_chg_pct": 22.8451,
+   "crop_kha": 128608.0,
+   "past_kha": 263215.0,
+   "crop_first_year": 1961.0
+  },
+  "RUS": {
+   "crop_pct": 7.5502,
+   "past_pct": 5.6209,
+   "forest_pct": 50.7393,
+   "agri_pct": 13.1711,
+   "crop_ha_pp": 0.85,
+   "crop_chg_pct": -6.2242,
+   "crop_kha": 123649.0,
+   "past_kha": 92052.0,
+   "crop_first_year": 1992.0
+  },
+  "UKR": {
+   "crop_pct": 58.2965,
+   "past_pct": 13.0031,
+   "forest_pct": 17.2834,
+   "agri_pct": 71.2996,
+   "crop_ha_pp": 0.9,
+   "crop_chg_pct": -1.8396,
+   "crop_kha": 33777.0,
+   "past_kha": 7534.0,
+   "crop_first_year": 1992.0
+  },
+  "KAZ": {
+   "crop_pct": 11.3279,
+   "past_pct": 67.8627,
+   "forest_pct": 1.2937,
+   "agri_pct": 79.1906,
+   "crop_ha_pp": 1.5,
+   "crop_chg_pct": -13.1607,
+   "crop_kha": 30581.8,
+   "past_kha": 183209.0,
+   "crop_first_year": 1992.0
+  },
+  "AUS": {
+   "crop_pct": 4.1147,
+   "past_pct": 43.1446,
+   "forest_pct": 17.3496,
+   "agri_pct": 47.2592,
+   "crop_ha_pp": 1.2,
+   "crop_chg_pct": 107.2709,
+   "crop_kha": 31650.0,
+   "past_kha": 331869.0,
+   "crop_first_year": 1961.0
+  },
+  "NGA": {
+   "crop_pct": 49.4407,
+   "past_pct": 27.6382,
+   "forest_pct": 19.0868,
+   "agri_pct": 77.0789,
+   "crop_ha_pp": 0.2,
+   "crop_chg_pct": 61.4145,
+   "crop_kha": 45029.15,
+   "past_kha": 25172.0,
+   "crop_first_year": 1961.0
+  },
+  "ITA": {
+   "crop_pct": 31.5501,
+   "past_pct": 12.1855,
+   "forest_pct": 31.7766,
+   "agri_pct": 41.5122,
+   "crop_ha_pp": 0.16,
+   "crop_chg_pct": -39.5563,
+   "crop_kha": 9330.0,
+   "past_kha": 3603.49,
+   "crop_first_year": 1961.0
+  },
+  "JPN": {
+   "crop_pct": 11.7888,
+   "past_pct": 0.8505,
+   "forest_pct": 68.3468,
+   "agri_pct": 12.6392,
+   "crop_ha_pp": 0.03,
+   "crop_chg_pct": -28.1385,
+   "crop_kha": 4297.0,
+   "past_kha": 310.0,
+   "crop_first_year": 1961.0
+  },
+  "BGD": {
+   "crop_pct": 67.5962,
+   "past_pct": 4.6094,
+   "forest_pct": 14.4073,
+   "agri_pct": 72.2056,
+   "crop_ha_pp": 0.05,
+   "crop_chg_pct": -0.7246,
+   "crop_kha": 8799.0,
+   "past_kha": 600.0,
+   "crop_first_year": 1961.0
+  },
+  "NLD": {
+   "crop_pct": 31.0365,
+   "past_pct": 22.5126,
+   "forest_pct": 10.9424,
+   "agri_pct": 53.5492,
+   "crop_ha_pp": 0.06,
+   "crop_chg_pct": 3.646,
+   "crop_kha": 1045.0,
+   "past_kha": 758.0,
+   "crop_first_year": 1961.0
+  },
+  "DNK": {
+   "crop_pct": 59.875,
+   "past_pct": 5.65,
+   "forest_pct": 15.9655,
+   "agri_pct": 65.525,
+   "crop_ha_pp": 0.4,
+   "crop_chg_pct": -14.1934,
+   "crop_kha": 2395.0,
+   "past_kha": 226.0,
+   "crop_first_year": 1961.0
+  },
+  "IRL": {
+   "crop_pct": 6.4015,
+   "past_pct": 54.4201,
+   "forest_pct": 11.8601,
+   "agri_pct": 60.8071,
+   "crop_ha_pp": 0.08,
+   "crop_chg_pct": -31.0793,
+   "crop_kha": 441.0,
+   "past_kha": 3749.0,
+   "crop_first_year": 1961.0
+  },
+  "MNG": {
+   "crop_pct": 0.7372,
+   "past_pct": 68.2183,
+   "forest_pct": 9.0974,
+   "agri_pct": 68.9556,
+   "crop_ha_pp": 0.33,
+   "crop_chg_pct": 64.4265,
+   "crop_kha": 1148.9685,
+   "past_kha": 106318.2772,
+   "crop_first_year": 1961.0
+  },
+  "SAU": {
+   "crop_pct": 1.923,
+   "past_pct": 79.0812,
+   "forest_pct": 1.2897,
+   "agri_pct": 81.0041,
+   "crop_ha_pp": 0.12,
+   "crop_chg_pct": 221.1251,
+   "crop_kha": 4133.8,
+   "past_kha": 170000.0,
+   "crop_first_year": 1961.0
+  },
+  "FRA": {
+   "crop_pct": 33.3081,
+   "past_pct": 19.373,
+   "forest_pct": 32.6861,
+   "agri_pct": 52.8678,
+   "crop_ha_pp": 0.27,
+   "crop_chg_pct": -15.5667,
+   "crop_kha": 17951.426,
+   "past_kha": 10441.071,
+   "crop_first_year": 1961.0
+  },
+  "DEU": {
+   "crop_pct": 34.0011,
+   "past_pct": 13.4619,
+   "forest_pct": 32.83,
+   "agri_pct": 47.4659,
+   "crop_ha_pp": 0.14,
+   "crop_chg_pct": -6.5051,
+   "crop_kha": 11881.0,
+   "past_kha": 4704.0,
+   "crop_first_year": 1961.0
+  },
+  "ussr": {
+   "crop_1961": 239533333.3333,
+   "crop_1990": 230130000.0,
+   "crop_2023": 211834960.0,
+   "chg_since_1990_pct": -7.9499,
+   "loss_since_1990_mha": 18.295
+  }
+ },
+ "uk": {
+  "wheat": {
+   "1961": 739000.0,
+   "2024": 1530771.0,
+   "peak_year": 2000,
+   "peak": 2085990.0,
+   "m2224": 1686590.3333
+  },
+  "barley": {
+   "1961": 1549115.0,
+   "2024": 1194000.0,
+   "peak_year": 1966,
+   "peak": 2482876.0,
+   "m2224": 1145000.0
+  },
+  "rapeseed": {
+   "1961": 600.0,
+   "2024": 293231.0,
+   "peak_year": 2012,
+   "peak": 755717.0,
+   "m2224": 349730.0,
+   "first_10k_year": 1973
+  },
+  "potato": {
+   "1961": 303000.0,
+   "2024": 118407.0,
+   "peak_year": 1964,
+   "peak": 335000.0,
+   "m2224": 119968.3333
+  },
+  "sugarbeet": {
+   "1961": 172000.0,
+   "2024": 102389.0,
+   "peak_year": 1979,
+   "peak": 214201.0,
+   "m2224": 96238.0
+  },
+  "oats": {
+   "1961": 704292.0,
+   "2024": 182046.0,
+   "peak_year": 1961,
+   "peak": 704292.0,
+   "m2224": 174348.6667
+  },
+  "pea": {
+   "1961": 14568.0,
+   "2024": 88900.0,
+   "peak_year": 1987,
+   "peak": 116600.0,
+   "m2224": 69030.3333
+  },
+  "fieldbean": {
+   "1961": 600.0,
+   "2024": 135387.0,
+   "peak_year": 2023,
+   "peak": 214145.0,
+   "m2224": 187097.0
+  },
+  "total_2024": 3980572.0,
+  "total_1961": 3808696.0,
+  "wheat_share_2224": 40.4142,
+  "wbr_share_2224": 76.2311,
+  "series": {
+   "wheat": [
+    739000,
+    913000,
+    780000,
+    893000,
+    1026000,
+    906174,
+    933214,
+    978269,
+    833205,
+    1010392,
+    1097425,
+    1127412,
+    1146412,
+    1233432,
+    1035432,
+    1231000,
+    1076230,
+    1258417,
+    1370760,
+    1440909,
+    1491000,
+    1663000,
+    1695000,
+    1939000,
+    1902000,
+    1997000,
+    1994000,
+    1886000,
+    2083000,
+    2013000,
+    1980495,
+    2066657,
+    1758958,
+    1810955,
+    1858642,
+    1976422,
+    2035646,
+    2045092,
+    1846874,
+    2085990,
+    1634996,
+    1995868,
+    1835762,
+    1990000,
+    1867000,
+    1836125,
+    1830000,
+    2080209,
+    1775337,
+    1938577,
+    1969383,
+    1992000,
+    1614511,
+    1935737,
+    1832000,
+    1823000,
+    1792000,
+    1748000,
+    1816000,
+    1387000,
+    1790000,
+    1809000,
+    1720000,
+    1530771
+   ],
+   "barley": [
+    1549115,
+    1613459,
+    1907257,
+    2036350,
+    2183249,
+    2482876,
+    2440900,
+    2402979,
+    2414942,
+    2244766,
+    2290074,
+    2289656,
+    2269000,
+    2216000,
+    2345000,
+    2182000,
+    2400403,
+    2351800,
+    2343438,
+    2329866,
+    2327000,
+    2222000,
+    2144000,
+    1979000,
+    1966000,
+    1917000,
+    1830000,
+    1878000,
+    1653200,
+    1516100,
+    1392700,
+    1297000,
+    1164000,
+    1106000,
+    1192000,
+    1269000,
+    1359000,
+    1253000,
+    1179000,
+    1128000,
+    1245000,
+    1101000,
+    1076000,
+    1007000,
+    938000,
+    881000,
+    898000,
+    1032000,
+    1143000,
+    921000,
+    970000,
+    1002000,
+    1213000,
+    1080000,
+    1101000,
+    1122000,
+    1177000,
+    1138000,
+    1162000,
+    1388000,
+    1150000,
+    1104000,
+    1137000,
+    1194000
+   ],
+   "rapeseed": [
+    600,
+    800,
+    1200,
+    1200,
+    1200,
+    2450,
+    6100,
+    5300,
+    7284,
+    4006,
+    5261,
+    6880,
+    13760,
+    24686,
+    39000,
+    48000,
+    55439,
+    64167,
+    74148,
+    91774,
+    125000,
+    174000,
+    222000,
+    269000,
+    296000,
+    299000,
+    388000,
+    347000,
+    321000,
+    389900,
+    439955,
+    421045,
+    417286,
+    491247,
+    438643,
+    414643,
+    472707,
+    533964,
+    536971,
+    401960,
+    451395,
+    431955,
+    542265,
+    553521,
+    594219,
+    575205,
+    681410,
+    598154,
+    569921,
+    641562,
+    704559,
+    755717,
+    715218,
+    674580,
+    652000,
+    579000,
+    562000,
+    583000,
+    530000,
+    380000,
+    307482,
+    364801,
+    391158,
+    293231
+   ],
+   "potato": [
+    303000,
+    316000,
+    334000,
+    335000,
+    316000,
+    283000,
+    301000,
+    295000,
+    260000,
+    283000,
+    268000,
+    247000,
+    234000,
+    226000,
+    204000,
+    222000,
+    232000,
+    214100,
+    203500,
+    206000,
+    192300,
+    192000,
+    195000,
+    199700,
+    192200,
+    178900,
+    178700,
+    181200,
+    174900,
+    177100,
+    177000,
+    180100,
+    170086,
+    163568,
+    171000,
+    177400,
+    165900,
+    164100,
+    177600,
+    166000,
+    165000,
+    158000,
+    145000,
+    148700,
+    137400,
+    141000,
+    140200,
+    144000,
+    144000,
+    138000,
+    146000,
+    149000,
+    139000,
+    141000,
+    129000,
+    139000,
+    146000,
+    140000,
+    144000,
+    142413,
+    136950,
+    126422,
+    115076,
+    118407
+   ],
+   "sugarbeet": [
+    172000,
+    170000,
+    170000,
+    179000,
+    183000,
+    179273,
+    183725,
+    186962,
+    184129,
+    186557,
+    189390,
+    188586,
+    194251,
+    195061,
+    198000,
+    206000,
+    202000,
+    209778,
+    214201,
+    213000,
+    210000,
+    204000,
+    199000,
+    199000,
+    205000,
+    204523,
+    203000,
+    197500,
+    197000,
+    194000,
+    196000,
+    197000,
+    197000,
+    195000,
+    196000,
+    199000,
+    196000,
+    189000,
+    183000,
+    173000,
+    177000,
+    169000,
+    162000,
+    154000,
+    148000,
+    131000,
+    125000,
+    119654,
+    114000,
+    118493,
+    112715,
+    120081,
+    117000,
+    116300,
+    90000,
+    86000,
+    111000,
+    114200,
+    108000,
+    111149,
+    90788,
+    87294,
+    99031,
+    102389
+   ],
+   "oats": [
+    704292,
+    616839,
+    525687,
+    457444,
+    411035,
+    368606,
+    411594,
+    382266,
+    384044,
+    377740,
+    363586,
+    316436,
+    283000,
+    255000,
+    233000,
+    235000,
+    194684,
+    180283,
+    135796,
+    147629,
+    144000,
+    129000,
+    108000,
+    106000,
+    134000,
+    97000,
+    99000,
+    120000,
+    118552,
+    106600,
+    103200,
+    100204,
+    91731,
+    109000,
+    111750,
+    96000,
+    100000,
+    98000,
+    92128,
+    108894,
+    112308,
+    125546,
+    121433,
+    107846,
+    90366,
+    121497,
+    129382,
+    135022,
+    129106,
+    124459,
+    108604,
+    121924,
+    176541,
+    137233,
+    131000,
+    141000,
+    161000,
+    171000,
+    182000,
+    210000,
+    200000,
+    174000,
+    167000,
+    182046
+   ],
+   "pea": [
+    14568,
+    12545,
+    16000,
+    15783,
+    13800,
+    14164,
+    16187,
+    20234,
+    22581,
+    29542,
+    24281,
+    21853,
+    21449,
+    27114,
+    29500,
+    31400,
+    37000,
+    36400,
+    36400,
+    33500,
+    28000,
+    21000,
+    47000,
+    56000,
+    92000,
+    91000,
+    116600,
+    106600,
+    85600,
+    76700,
+    78000,
+    79000,
+    81000,
+    79000,
+    76000,
+    79000,
+    97800,
+    102200,
+    89500,
+    83600,
+    102400,
+    85000,
+    73500,
+    62280,
+    43000,
+    44000,
+    37000,
+    29876,
+    42000,
+    42000,
+    30000,
+    24000,
+    29000,
+    32000,
+    44000,
+    51600,
+    40100,
+    38100,
+    41000,
+    51600,
+    60984,
+    57246,
+    60945,
+    88900
+   ],
+   "fieldbean": [
+    600,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    23000,
+    23000,
+    16000,
+    33000,
+    8000,
+    10000,
+    17000,
+    28000,
+    20000,
+    23000,
+    7000,
+    7000,
+    10000,
+    16000,
+    27000,
+    41000,
+    19000,
+    55000,
+    23000,
+    31000,
+    42000,
+    36000,
+    46000,
+    57000,
+    31000,
+    31000,
+    24000,
+    44000,
+    44000,
+    24000,
+    24000,
+    45000,
+    31800,
+    32500,
+    42000,
+    30000,
+    22000,
+    37000,
+    97000,
+    81000,
+    66000,
+    73000,
+    103488,
+    125351,
+    177000,
+    192700,
+    154600,
+    136950,
+    181340,
+    187631,
+    211759,
+    214145,
+    135387
+   ]
+  },
+  "years": [
+   1961,
+   1962,
+   1963,
+   1964,
+   1965,
+   1966,
+   1967,
+   1968,
+   1969,
+   1970,
+   1971,
+   1972,
+   1973,
+   1974,
+   1975,
+   1976,
+   1977,
+   1978,
+   1979,
+   1980,
+   1981,
+   1982,
+   1983,
+   1984,
+   1985,
+   1986,
+   1987,
+   1988,
+   1989,
+   1990,
+   1991,
+   1992,
+   1993,
+   1994,
+   1995,
+   1996,
+   1997,
+   1998,
+   1999,
+   2000,
+   2001,
+   2002,
+   2003,
+   2004,
+   2005,
+   2006,
+   2007,
+   2008,
+   2009,
+   2010,
+   2011,
+   2012,
+   2013,
+   2014,
+   2015,
+   2016,
+   2017,
+   2018,
+   2019,
+   2020,
+   2021,
+   2022,
+   2023,
+   2024
+  ],
+  "spec": {
+   "name": "Field and broad beans",
+   "lq": 23.8476,
+   "share": 4.4832,
+   "wshare": 6.7301,
+   "ha": 187097.0
+  },
+  "lu": {
+   "crop_pct": 25.1568,
+   "past_pct": 45.1505,
+   "forest_pct": 13.4452,
+   "agri_pct": 70.3073,
+   "crop_ha_pp": 0.09,
+   "crop_chg_pct": -17.3224,
+   "crop_kha": 6086.1833,
+   "past_kha": 10923.2673,
+   "crop_first_year": 1961.0
+  },
+  "dom_with_maize": [
+   {
+    "k": "wheat",
+    "name": "Wheat",
+    "pct": 51.704
+   },
+   {
+    "k": "barley",
+    "name": "Barley",
+    "pct": 34.9719
+   },
+   {
+    "k": "maize",
+    "name": "Maize",
+    "pct": 10.8654
+   },
+   {
+    "k": "oats",
+    "name": "Oats",
+    "pct": 2.2172
+   },
+   {
+    "k": "rapeseed",
+    "name": "Rapeseed",
+    "pct": 0.1127
+   },
+   {
+    "k": "rye",
+    "name": "Rye",
+    "pct": 0.089
+   }
+  ],
+  "cells_with_maize": 13691,
+  "dom": [
+   {
+    "k": "wheat",
+    "name": "Wheat",
+    "pct": 56.83
+   },
+   {
+    "k": "barley",
+    "name": "Barley",
+    "pct": 40.0541
+   },
+   {
+    "k": "oats",
+    "name": "Oats",
+    "pct": 2.6266
+   },
+   {
+    "k": "rapeseed",
+    "name": "Rapeseed",
+    "pct": 0.1605
+   },
+   {
+    "k": "rye",
+    "name": "Rye",
+    "pct": 0.1306
+   },
+   {
+    "k": "potato",
+    "name": "Potatoes",
+    "pct": 0.052
+   }
+  ],
+  "cells": 13604,
+  "dom_by_k": {
+   "wheat": 56.83,
+   "barley": 40.0541,
+   "oats": 2.6266,
+   "rapeseed": 0.1605,
+   "rye": 0.1306,
+   "potato": 0.052
+  },
+  "dom_with_maize_by_k": {
+   "wheat": 51.704,
+   "barley": 34.9719,
+   "maize": 10.8654,
+   "oats": 2.2172,
+   "rapeseed": 0.1127,
+   "rye": 0.089
+  },
+  "cg": {
+   "wheat": 1393643.9,
+   "barley": 1365375.3,
+   "rapeseed": 379475.3,
+   "potato": 141957.1,
+   "sugarbeet": 111214.1,
+   "oats": 181283.0,
+   "maize": 830562.4,
+   "pea": 52571.3,
+   "bean": 0.3
+  },
+  "div": 4.4274
+ },
+ "grid": {
+  "cells_any": 771124,
+  "cells_farmed": 509672,
+  "farmed_share_of_area": 99.5104,
+  "total_ha": 1225242025.0984,
+  "phys_ha": 1168816602.3817,
+  "native_cells": 2851739,
+  "native_dom_half": 55.2001,
+  "half_on_land_pct": 6.4256,
+  "ninety_on_land_pct": 20.5265,
+  "land_ha": 13213004370.4753,
+  "dom_cells": [
+   {
+    "k": "wheat",
+    "name": "Wheat",
+    "n": 131353,
+    "pct": 25.7721
+   },
+   {
+    "k": "maize",
+    "name": "Maize",
+    "n": 115650,
+    "pct": 22.6911
+   },
+   {
+    "k": "rice",
+    "name": "Rice",
+    "n": 53235,
+    "pct": 10.445
+   },
+   {
+    "k": "soybean",
+    "name": "Soya beans",
+    "n": 41041,
+    "pct": 8.0524
+   },
+   {
+    "k": "barley",
+    "name": "Barley",
+    "n": 20564,
+    "pct": 4.0348
+   },
+   {
+    "k": "cassava",
+    "name": "Cassava",
+    "n": 13595,
+    "pct": 2.6674
+   },
+   {
+    "k": "sorghum",
+    "name": "Sorghum",
+    "n": 11796,
+    "pct": 2.3144
+   },
+   {
+    "k": "bean",
+    "name": "Dry beans",
+    "n": 9704,
+    "pct": 1.904
+   },
+   {
+    "k": "rubber",
+    "name": "Rubber",
+    "n": 8574,
+    "pct": 1.6823
+   },
+   {
+    "k": "sesame",
+    "name": "Sesame",
+    "n": 7937,
+    "pct": 1.5573
+   },
+   {
+    "k": "olive",
+    "name": "Olives",
+    "n": 7751,
+    "pct": 1.5208
+   },
+   {
+    "k": "sunflower",
+    "name": "Sunflower",
+    "n": 7593,
+    "pct": 1.4898
+   },
+   {
+    "k": "millet",
+    "name": "Millet",
+    "n": 7567,
+    "pct": 1.4847
+   },
+   {
+    "k": "sugarcane",
+    "name": "Sugar cane",
+    "n": 7312,
+    "pct": 1.4346
+   },
+   {
+    "k": "cotton",
+    "name": "Cotton",
+    "n": 6840,
+    "pct": 1.342
+   },
+   {
+    "k": "oilpalm",
+    "name": "Oil palm",
+    "n": 6823,
+    "pct": 1.3387
+   },
+   {
+    "k": "rapeseed",
+    "name": "Rapeseed",
+    "n": 6575,
+    "pct": 1.29
+   },
+   {
+    "k": "coffee",
+    "name": "Coffee",
+    "n": 5944,
+    "pct": 1.1662
+   },
+   {
+    "k": "groundnut",
+    "name": "Groundnuts",
+    "n": 5681,
+    "pct": 1.1146
+   },
+   {
+    "k": "potato",
+    "name": "Potatoes",
+    "n": 5443,
+    "pct": 1.0679
+   },
+   {
+    "k": "cocoa",
+    "name": "Cocoa",
+    "n": 4841,
+    "pct": 0.9498
+   },
+   {
+    "k": "coconut",
+    "name": "Coconut",
+    "n": 4190,
+    "pct": 0.8221
+   },
+   {
+    "k": "oats",
+    "name": "Oats",
+    "n": 3209,
+    "pct": 0.6296
+   },
+   {
+    "k": "tea",
+    "name": "Tea",
+    "n": 3033,
+    "pct": 0.5951
+   },
+   {
+    "k": "grape",
+    "name": "Grapes",
+    "n": 2794,
+    "pct": 0.5482
+   },
+   {
+    "k": "plantain",
+    "name": "Plantains",
+    "n": 2123,
+    "pct": 0.4165
+   },
+   {
+    "k": "banana",
+    "name": "Bananas",
+    "n": 1815,
+    "pct": 0.3561
+   },
+   {
+    "k": "chickpea",
+    "name": "Chickpeas",
+    "n": 1666,
+    "pct": 0.3269
+   },
+   {
+    "k": "cowpea",
+    "name": "Cowpeas",
+    "n": 1581,
+    "pct": 0.3102
+   },
+   {
+    "k": "yam",
+    "name": "Yams",
+    "n": 1285,
+    "pct": 0.2521
+   },
+   {
+    "k": "rye",
+    "name": "Rye",
+    "n": 1241,
+    "pct": 0.2435
+   },
+   {
+    "k": "pea",
+    "name": "Dry peas",
+    "n": 496,
+    "pct": 0.0973
+   },
+   {
+    "k": "lentil",
+    "name": "Lentils",
+    "n": 244,
+    "pct": 0.0479
+   },
+   {
+    "k": "sugarbeet",
+    "name": "Sugar beet",
+    "n": 176,
+    "pct": 0.0345
+   }
+  ],
+  "dom_area": [
+   {
+    "k": "wheat",
+    "name": "Wheat",
+    "pct": 25.1555
+   },
+   {
+    "k": "rice",
+    "name": "Rice",
+    "pct": 16.3197
+   },
+   {
+    "k": "maize",
+    "name": "Maize",
+    "pct": 15.8949
+   },
+   {
+    "k": "soybean",
+    "name": "Soya beans",
+    "pct": 11.8283
+   },
+   {
+    "k": "oilpalm",
+    "name": "Oil palm",
+    "pct": 2.6688
+   },
+   {
+    "k": "sorghum",
+    "name": "Sorghum",
+    "pct": 2.559
+   },
+   {
+    "k": "cassava",
+    "name": "Cassava",
+    "pct": 2.2271
+   },
+   {
+    "k": "cotton",
+    "name": "Cotton",
+    "pct": 2.198
+   },
+   {
+    "k": "bean",
+    "name": "Dry beans",
+    "pct": 2.1512
+   },
+   {
+    "k": "barley",
+    "name": "Barley",
+    "pct": 1.9394
+   },
+   {
+    "k": "sugarcane",
+    "name": "Sugar cane",
+    "pct": 1.691
+   },
+   {
+    "k": "millet",
+    "name": "Millet",
+    "pct": 1.6166
+   },
+   {
+    "k": "rapeseed",
+    "name": "Rapeseed",
+    "pct": 1.5986
+   },
+   {
+    "k": "sunflower",
+    "name": "Sunflower",
+    "pct": 1.5229
+   },
+   {
+    "k": "groundnut",
+    "name": "Groundnuts",
+    "pct": 1.3887
+   },
+   {
+    "k": "cocoa",
+    "name": "Cocoa",
+    "pct": 1.2474
+   },
+   {
+    "k": "cowpea",
+    "name": "Cowpeas",
+    "pct": 1.059
+   },
+   {
+    "k": "coconut",
+    "name": "Coconut",
+    "pct": 0.9212
+   },
+   {
+    "k": "olive",
+    "name": "Olives",
+    "pct": 0.8795
+   },
+   {
+    "k": "coffee",
+    "name": "Coffee",
+    "pct": 0.8474
+   },
+   {
+    "k": "chickpea",
+    "name": "Chickpeas",
+    "pct": 0.7198
+   },
+   {
+    "k": "yam",
+    "name": "Yams",
+    "pct": 0.6095
+   },
+   {
+    "k": "sesame",
+    "name": "Sesame",
+    "pct": 0.4996
+   },
+   {
+    "k": "potato",
+    "name": "Potatoes",
+    "pct": 0.4772
+   },
+   {
+    "k": "plantain",
+    "name": "Plantains",
+    "pct": 0.4686
+   },
+   {
+    "k": "tea",
+    "name": "Tea",
+    "pct": 0.406
+   },
+   {
+    "k": "rubber",
+    "name": "Rubber",
+    "pct": 0.3262
+   },
+   {
+    "k": "grape",
+    "name": "Grapes",
+    "pct": 0.1931
+   },
+   {
+    "k": "oats",
+    "name": "Oats",
+    "pct": 0.1849
+   },
+   {
+    "k": "banana",
+    "name": "Bananas",
+    "pct": 0.1636
+   },
+   {
+    "k": "rye",
+    "name": "Rye",
+    "pct": 0.144
+   },
+   {
+    "k": "lentil",
+    "name": "Lentils",
+    "pct": 0.056
+   },
+   {
+    "k": "pea",
+    "name": "Dry peas",
+    "pct": 0.0209
+   },
+   {
+    "k": "sugarbeet",
+    "name": "Sugar beet",
+    "pct": 0.0162
+   }
+  ],
+  "dom_fam_cells": {
+   "cereal": 67.6151,
+   "oil": 13.5042,
+   "pulse": 2.6862,
+   "root": 3.9875,
+   "sugar": 1.4692,
+   "tree": 9.3958,
+   "fibre": 1.342
+  },
+  "dom_by_k": {
+   "wheat": 25.7721,
+   "maize": 22.6911,
+   "rice": 10.445,
+   "soybean": 8.0524,
+   "barley": 4.0348,
+   "cassava": 2.6674,
+   "sorghum": 2.3144,
+   "bean": 1.904,
+   "rubber": 1.6823,
+   "sesame": 1.5573,
+   "olive": 1.5208,
+   "sunflower": 1.4898,
+   "millet": 1.4847,
+   "sugarcane": 1.4346,
+   "cotton": 1.342,
+   "oilpalm": 1.3387,
+   "rapeseed": 1.29,
+   "coffee": 1.1662,
+   "groundnut": 1.1146,
+   "potato": 1.0679,
+   "cocoa": 0.9498,
+   "coconut": 0.8221,
+   "oats": 0.6296,
+   "tea": 0.5951,
+   "grape": 0.5482,
+   "plantain": 0.4165,
+   "banana": 0.3561,
+   "chickpea": 0.3269,
+   "cowpea": 0.3102,
+   "yam": 0.2521,
+   "rye": 0.2435,
+   "pea": 0.0973,
+   "lentil": 0.0479,
+   "sugarbeet": 0.0345
+  },
+  "n_dom_crops": 34,
+  "share_area_dom_half": 52.7726,
+  "div_mean_area_weighted": 3.9943,
+  "div_hi_cells_pct": 12.7172,
+  "div_lo_cells_pct": 6.3152,
+  "div_top": [
+   {
+    "iso": "BLR",
+    "name": "Belarus",
+    "v": 7.4026
+   },
+   {
+    "iso": "HTI",
+    "name": "Haiti",
+    "v": 6.9883
+   },
+   {
+    "iso": "CAF",
+    "name": "Central African Republic",
+    "v": 6.6517
+   },
+   {
+    "iso": "NGA",
+    "name": "Nigeria",
+    "v": 6.4773
+   },
+   {
+    "iso": "UKR",
+    "name": "Ukraine",
+    "v": 6.3404
+   }
+  ],
+  "div_bottom": [
+   {
+    "iso": "MYS",
+    "name": "Malaysia",
+    "v": 1.7819
+   },
+   {
+    "iso": "AFG",
+    "name": "Afghanistan",
+    "v": 1.7895
+   },
+   {
+    "iso": "KAZ",
+    "name": "Kazakhstan",
+    "v": 1.9638
+   },
+   {
+    "iso": "BGD",
+    "name": "Bangladesh",
+    "v": 1.9757
+   },
+   {
+    "iso": "TUN",
+    "name": "Tunisia",
+    "v": 2.3969
+   }
+  ],
+  "div_country": {
+   "AFG": 1.79,
+   "DZA": 2.99,
+   "AGO": 3.59,
+   "ARG": 3.37,
+   "AUS": 3.67,
+   "AUT": 5.58,
+   "AZE": 3.51,
+   "BGD": 1.98,
+   "BLR": 7.4,
+   "BEL": 4.14,
+   "BEN": 4.37,
+   "BOL": 5.43,
+   "BIH": 3.78,
+   "BRA": 2.69,
+   "BGR": 3.91,
+   "BFA": 5.19,
+   "BDI": 4.16,
+   "KHM": 2.5,
+   "CMR": 4.82,
+   "CAN": 3.68,
+   "CAF": 6.65,
+   "TCD": 5.07,
+   "CHL": 4.15,
+   "CHN": 3.61,
+   "COL": 3.53,
+   "COG": 5.89,
+   "CRI": 3.36,
+   "HRV": 5.18,
+   "CUB": 6.31,
+   "CZE": 4.52,
+   "CIV": 5.0,
+   "COD": 4.04,
+   "DNK": 3.88,
+   "DOM": 5.12,
+   "ECU": 4.69,
+   "EGY": 4.72,
+   "SLV": 4.69,
+   "ERI": 3.54,
+   "EST": 4.96,
+   "ETH": 5.28,
+   "MKD": 5.38,
+   "FIN": 4.08,
+   "FRA": 4.78,
+   "GAB": 6.23,
+   "GMB": 4.19,
+   "GEO": 3.4,
+   "DEU": 4.35,
+   "GHA": 5.38,
+   "GRC": 4.6,
+   "GTM": 4.15,
+   "GIN": 4.8,
+   "GNB": 4.04,
+   "HTI": 6.99,
+   "HND": 3.5,
+   "HUN": 5.17,
+   "IND": 4.81,
+   "IDN": 3.04,
+   "IRN": 3.07,
+   "IRQ": 2.57,
+   "IRL": 2.95,
+   "ITA": 5.08,
+   "JPN": 2.42,
+   "KAZ": 1.96,
+   "KEN": 3.9,
+   "KGZ": 4.37,
+   "LAO": 2.63,
+   "LVA": 3.89,
+   "LBR": 4.56,
+   "LBY": 3.03,
+   "LTU": 4.83,
+   "MDG": 3.1,
+   "MWI": 5.32,
+   "MYS": 1.78,
+   "MLI": 4.33,
+   "MRT": 3.02,
+   "MEX": 2.71,
+   "MDA": 5.23,
+   "MAR": 3.38,
+   "MOZ": 4.72,
+   "MMR": 4.75,
+   "NAM": 2.46,
+   "NPL": 5.15,
+   "NLD": 3.89,
+   "NIC": 5.2,
+   "NER": 3.28,
+   "NGA": 6.48,
+   "PRK": 5.24,
+   "NOR": 2.94,
+   "PAK": 4.13,
+   "PAN": 4.62,
+   "PNG": 2.67,
+   "PRY": 3.14,
+   "PER": 4.86,
+   "PHL": 3.02,
+   "POL": 5.05,
+   "PRT": 3.62,
+   "ROU": 4.93,
+   "RUS": 4.96,
+   "RWA": 4.32,
+   "SAU": 2.53,
+   "SEN": 3.74,
+   "SRB": 4.73,
+   "SLE": 3.82,
+   "SVK": 5.33,
+   "SOM": 4.27,
+   "ZAF": 3.25,
+   "KOR": 2.49,
+   "SSD": 3.86,
+   "ESP": 4.55,
+   "LKA": 3.3,
+   "SDN": 3.06,
+   "SWE": 4.08,
+   "CHE": 5.75,
+   "SYR": 3.71,
+   "TWN": 2.49,
+   "TJK": 3.89,
+   "TZA": 5.12,
+   "THA": 3.52,
+   "TGO": 6.17,
+   "TUN": 2.4,
+   "TUR": 4.95,
+   "TKM": 2.5,
+   "GBR": 4.43,
+   "USA": 2.49,
+   "UGA": 6.3,
+   "UKR": 6.34,
+   "URY": 3.08,
+   "UZB": 3.12,
+   "VEN": 3.98,
+   "VNM": 2.68,
+   "YEM": 4.13,
+   "ZMB": 3.36,
+   "ZWE": 4.11
+  },
+  "div_n_countries": 133,
+  "div_GBR": 4.4274,
+  "div_USA": 2.4883,
+  "div_BRA": 2.6915,
+  "div_IND": 4.8087,
+  "div_CHN": 3.6078,
+  "div_ETH": 5.2835,
+  "div_NGA": 6.4773,
+  "div_FRA": 4.7764,
+  "cg_fao_r_log": 0.9919,
+  "cg_fao_n": 166,
+  "cg_total_34": 1225241206.0,
+  "fao_2020_34": 1266556829.0,
+  "cg_vs_fao_pct": 96.738,
+  "qual": {
+   "wheat": 0.817,
+   "maize": 0.817,
+   "rice": 0.797,
+   "barley": 0.78,
+   "sorghum": 0.774,
+   "millet": 0.786,
+   "oats": 0.626,
+   "rye": 0.628,
+   "soybean": 0.878,
+   "rapeseed": 0.786,
+   "sunflower": 0.772,
+   "groundnut": 0.764,
+   "sesame": 0.475,
+   "bean": 0.739,
+   "chickpea": 0.739,
+   "cowpea": 0.77,
+   "lentil": 0.814,
+   "pea": 0.696,
+   "cassava": 0.763,
+   "potato": 0.748,
+   "yam": 0.793,
+   "sugarcane": 0.827,
+   "sugarbeet": 0.813,
+   "oilpalm": 0.798,
+   "coconut": 0.773,
+   "coffee": 0.739,
+   "cocoa": 0.796,
+   "tea": 0.685,
+   "rubber": 0.603,
+   "olive": 0.733,
+   "grape": 0.647,
+   "banana": 0.716,
+   "plantain": 0.765,
+   "cotton": 0.759
+  },
+  "qual_mean": 0.7937,
+  "qual_low": [
+   {
+    "k": "sesame",
+    "name": "Sesame",
+    "q": 0.475
+   },
+   {
+    "k": "rubber",
+    "name": "Rubber",
+    "q": 0.603
+   },
+   {
+    "k": "oats",
+    "name": "Oats",
+    "q": 0.626
+   },
+   {
+    "k": "rye",
+    "name": "Rye",
+    "q": 0.628
+   }
+  ],
+  "multi_crop_ratio": 1.0483,
+  "rice_multi": 1.2353,
+  "eu_maize": {
+   "GBR": 830562.4,
+   "IRL": 96946.0,
+   "FIN": 347962.9
+  },
+  "eu_maize_fao": {
+   "GBR": 0.0,
+   "IRL": 0.0,
+   "FIN": 0.0
+  }
+ }
+}

@@ -1,1 +1,722 @@
-not found
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>What the World Grows</title>
+<meta name="description" content="A world map of farmland and crops: the dominant crop on every 10 km of farmland from CROPGRIDS, 34 crops one by one, and cropland, pasture and the biggest crop in every country since 1961 from FAOSTAT.">
+<meta property="og:title" content="What the world grows: farmland and crops on one map">
+<meta property="og:description" content="Half the world's harvested area of 34 major crops lies on {{grid.half_on_land_pct|f1}}% of its land. Wheat, maize, rice and soya beans cover {{crops.top4_share_2024|pc}} of all harvested land. Explore the dominant crop everywhere, 34 crops one by one, and every country's farmland since 1961.">
+<meta property="og:image" content="https://maps.tristanhotham.com/crop-map/header.png">
+<meta property="og:url" content="https://maps.tristanhotham.com/crop-map/">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,800;9..144,900&family=IBM+Plex+Mono:wght@400;500&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;1,8..60,400&display=swap">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css">
+<style>
+/* Field and barn: paper cream, terracotta, wheat gold, leaf green. Crop colours are set in the script. */
+:root{
+  --bg:#F7F4EA; --panel:#EEE9DA; --fg:#22231E; --muted:#6B675E; --rule:#DDD6C2; --card:#FFFDF6; --border:#CFC6AE;
+  --hot:#B5562E; --cool:#2E6B4F; --gold:#C9921A; --land:#E9E4D4; --sea:#F2EFE6;
+  --display:"Fraunces",Georgia,"Times New Roman",serif;
+  --body:"Source Serif 4",Georgia,"Times New Roman",serif;
+  --mono:"IBM Plex Mono",ui-monospace,Menlo,Consolas,monospace;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --bg:#161814; --panel:#20231D; --fg:#ECEADF; --muted:#A6A291; --rule:#34372E; --card:#1C1F19; --border:#474A3E;
+  --hot:#E58A5F; --cool:#7FC4A0; --gold:#F0C25A; --land:#2A2D25; --sea:#191B16; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#161814; --panel:#20231D; --fg:#ECEADF; --muted:#A6A291; --rule:#34372E; --card:#1C1F19; --border:#474A3E;
+  --hot:#E58A5F; --cool:#7FC4A0; --gold:#F0C25A; --land:#2A2D25; --sea:#191B16; color-scheme:dark}
+*,*::before,*::after{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--bg);color:var(--fg);font:400 18px/1.62 var(--body);
+  padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));overflow-x:hidden}
+.wrap{max-width:700px;margin:0 auto;padding-block:28px 64px}
+.wrap .bleed{width:min(1180px,calc(100vw - 32px));margin-left:calc((100% - min(1180px,100vw - 32px))/2);margin-right:0}
+a{color:inherit;text-decoration-color:var(--hot);text-underline-offset:3px}
+.kicker{font:500 12px/1 var(--mono);letter-spacing:.12em;text-transform:uppercase;color:var(--muted);display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+.kicker b{background:var(--hot);color:#fff;padding:5px 8px;font-weight:500}
+header.hero{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:12px 24px;align-items:end;border-bottom:6px double var(--fg);padding-bottom:22px;margin-top:18px}
+h1{font:900 clamp(44px,11vw,96px)/.9 var(--display);letter-spacing:-.02em;margin:0;text-wrap:balance}
+h1 .a{color:var(--hot)} h1 .b{color:var(--gold)}
+.mark{width:clamp(78px,16vw,128px);height:auto;display:block}
+.dek{grid-column:1/-1;font-size:21px;line-height:1.42;margin:8px 0 0;max-width:56ch}
+.byline{font:400 13px/1.4 var(--mono);color:var(--muted);margin-top:14px}
+h2{font:800 34px/1.04 var(--display);letter-spacing:-.01em;margin:54px 0 10px;text-wrap:balance}
+h2 .n{font:500 13px/1 var(--mono);color:var(--hot);display:block;letter-spacing:.1em;margin-bottom:10px}
+h3{font:600 20px/1.25 var(--display);margin:28px 0 6px}
+p{margin:0 0 16px}
+.lede::first-letter{font:900 72px/.8 var(--display);float:left;margin:6px 10px 0 0;color:var(--hot)}
+.stats{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:1px;background:var(--rule);border:1px solid var(--rule);margin:26px 0 8px}
+.stats div{background:var(--card);padding:14px 12px}
+.stats b{display:block;font:900 clamp(22px,4.4vw,32px)/1 var(--display);letter-spacing:-.01em}
+.stats b.h{color:var(--hot)} .stats b.c{color:var(--cool)} .stats b.g{color:var(--gold)}
+.stats span{font:400 12px/1.35 var(--mono);color:var(--muted);display:block;margin-top:6px}
+@media (max-width:600px){.stats{grid-template-columns:repeat(2,minmax(0,1fr))}}
+.figure{margin:26px 0 30px}
+.fig-h{font:600 19px/1.25 var(--display);margin:0 0 4px}
+.fig-sub{font:400 13px/1.45 var(--mono);color:var(--muted);margin:0 0 12px}
+.src{font:400 12px/1.45 var(--mono);color:var(--muted);margin-top:10px}
+.chart{width:100%;position:relative}
+.chart svg{display:block;width:100%;height:auto;overflow:visible}
+svg text{font-family:var(--mono);fill:var(--fg)}
+.lab{font-size:12px}.lab.m{fill:var(--muted)}.lab.b{font-weight:500}.lab.s{font-size:11px}
+.tip{position:absolute;pointer-events:none;background:var(--fg);color:var(--bg);font:400 12px/1.45 var(--mono);padding:8px 10px;border-radius:3px;max-width:290px;z-index:1000;transform:translate(-50%,calc(-100% - 12px));display:none}
+.tip b{font-weight:500}
+.controls{display:flex;gap:8px;align-items:center;margin:0 0 10px;flex-wrap:wrap}
+.scrollrow{display:flex;gap:6px;overflow-x:auto;-webkit-overflow-scrolling:touch;scrollbar-width:thin;padding-bottom:2px;max-width:100%}
+.scrollrow .btn{flex:0 0 auto;white-space:nowrap}
+.scrollrow[hidden]{display:none}
+.ctl-l{font:500 11px/1 var(--mono);letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin-right:2px;flex:0 0 auto;align-self:center}
+.btn{font:500 12px/1 var(--mono);background:var(--card);color:var(--fg);border:1px solid var(--border);border-radius:3px;padding:8px 10px;cursor:pointer;min-height:36px}
+.btn[aria-pressed="true"]{background:var(--fg);color:var(--bg);border-color:var(--fg)}
+.btn .dot{display:inline-block;width:9px;height:9px;border-radius:50%;margin-right:6px;vertical-align:0}
+.btn:focus-visible,input:focus-visible,summary:focus-visible,select:focus-visible{outline:2px solid var(--hot);outline-offset:2px}
+.tabs .btn[aria-pressed="true"]{background:var(--tab,var(--hot));border-color:var(--tab,var(--hot));color:#fff}
+.searchbox{position:relative;flex:1 1 260px;min-width:0}
+input[type=search]{font:400 15px/1 var(--mono);background:var(--card);color:var(--fg);border:1px solid var(--border);border-radius:3px;padding:10px 11px;min-height:40px;width:100%}
+.suggest{position:absolute;left:0;right:0;top:100%;margin:2px 0 0;padding:0;list-style:none;background:var(--card);border:1px solid var(--border);z-index:1001;font:400 13px/1.3 var(--mono);display:none;max-height:340px;overflow:auto}
+.suggest li{padding:8px 10px;cursor:pointer;border-bottom:1px solid var(--rule)}
+.suggest li span{color:var(--muted)}
+.suggest li[aria-selected="true"],.suggest li:hover{background:var(--panel)}
+.mapgrid{display:grid;grid-template-columns:minmax(0,1fr) 340px;gap:14px;align-items:start}
+@media (max-width:900px){.mapgrid{grid-template-columns:1fr}}
+.side{background:var(--card);border:1px solid var(--border);padding:12px 12px 10px;font:400 13px/1.45 var(--mono);max-height:660px;overflow:auto}
+@media (max-width:900px){.side{max-height:none}}
+.side h4{font:500 11px/1 var(--mono);letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin:14px 0 8px}
+.side h4:first-child{margin-top:2px}
+.side .big{font:800 26px/1.1 var(--display);margin:2px 0 4px}
+.side .sub{color:var(--muted);font-size:12px;margin:0 0 8px}
+.side table{width:100%;border-collapse:collapse;margin:4px 0 6px}
+.side td{padding:4px 4px 4px 0;border-bottom:1px solid var(--rule);vertical-align:top}
+.side td.num{text-align:right;white-space:nowrap}
+.side td small{color:var(--muted)}
+.lubar{display:flex;height:16px;border-radius:2px;overflow:hidden;margin:6px 0 4px;border:1px solid var(--rule)}
+.lubar span{display:block;height:100%}
+.chip{display:inline-block;font:500 11px/1 var(--mono);padding:4px 7px;border-radius:999px;color:#fff;margin:0 4px 4px 0}
+.sw{display:inline-block;width:11px;height:11px;border-radius:2px;margin-right:6px;vertical-align:-1px;border:1px solid rgba(0,0,0,.15)}
+.lmap{height:620px;border:1px solid var(--border);background:var(--sea);border-radius:2px}
+@media (max-width:600px){.lmap{height:min(62vh,460px)}}
+.leaflet-container{font:400 12px/1.4 var(--mono);background:var(--sea)}
+.leaflet-popup-content{font:400 12.5px/1.45 var(--mono);margin:10px 12px}
+.leaflet-popup-content b{font-weight:600}
+.leaflet-popup-content-wrapper,.leaflet-popup-tip{background:var(--card);color:var(--fg)}
+.lyrBtn{background:var(--card,var(--bg));color:var(--fg);border:1px solid var(--border);border-radius:3px;font:600 12px/1 var(--mono);padding:8px 10px;cursor:pointer;box-shadow:0 1px 4px rgba(0,0,0,.12)}
+.lyrBtn[aria-expanded="true"]{background:var(--fg);color:var(--bg)}
+.lyrPanel{background:var(--card,var(--bg));color:var(--fg);border:1px solid var(--border);border-radius:3px;padding:10px 12px 8px;margin-top:6px;width:250px;box-shadow:0 2px 10px rgba(0,0,0,.15);font:400 12px/1.3 var(--mono);max-height:min(70vh,520px);overflow:auto}
+.lyrPanel[hidden]{display:none}
+.lyrPanel .row{margin:0 0 9px}
+.lyrPanel label{display:flex;gap:6px;align-items:center;cursor:pointer;font-weight:600}
+.lyrPanel input[type=range]{width:100%;accent-color:var(--fg)}
+.lyrPanel select{font:400 12px var(--mono);background:var(--bg);color:var(--fg);border:1px solid var(--border);border-radius:2px;padding:2px 4px;width:100%;min-height:0}
+.lyrPanel .sub{display:flex;gap:6px;align-items:center;color:var(--muted);font-size:11px;margin-top:3px}
+.lyrPanel .sub span{flex:0 0 58px}
+.lyrPanel .hd{font:500 10.5px/1 var(--mono);letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin:10px 0 7px;border-top:1px solid var(--rule);padding-top:9px}
+.lyrPanel .reset{font:400 11px var(--mono);color:var(--muted);background:none;border:0;padding:0;cursor:pointer;text-decoration:underline}
+.cityL{font:500 11px/1 var(--mono);color:var(--fg);white-space:nowrap;text-shadow:0 0 3px var(--bg),0 0 3px var(--bg),0 0 2px var(--bg);pointer-events:none}
+.cityL i{display:inline-block;width:5px;height:5px;border-radius:50%;background:var(--fg);margin-right:4px;vertical-align:1px}
+.cityL.s{font-size:10px;font-weight:400}
+.cntL{font:700 11px/1 var(--mono);color:var(--fg);white-space:nowrap;text-transform:uppercase;letter-spacing:.06em;opacity:.75;text-shadow:0 0 3px var(--bg),0 0 3px var(--bg);pointer-events:none;text-align:center}
+.mapnote{background:color-mix(in srgb,var(--card) 92%,transparent);border:1px solid var(--border);border-radius:3px;padding:6px 9px;font:400 12px/1.35 var(--mono);max-width:min(300px,62vw);box-shadow:0 1px 4px rgba(0,0,0,.12)}
+.mapnote b{font-weight:600}
+.mapnote:empty{display:none}
+.leaflet-bar a,.leaflet-bar a:hover{background:var(--card);color:var(--fg);border-bottom-color:var(--border)}
+.leaflet-control-attribution{background:color-mix(in srgb,var(--card) 85%,transparent)!important;color:var(--muted)}
+.leaflet-control-attribution a{color:var(--fg)}
+.legend{display:flex;gap:6px 14px;flex-wrap:wrap;font:400 12px/1.3 var(--mono);color:var(--muted);margin-top:8px}
+.legend span{display:inline-flex;align-items:center}
+.legend i{display:inline-block;width:13px;height:13px;margin-right:6px;border-radius:2px;border:1px solid rgba(0,0,0,.15)}
+.legend .grp{font-weight:500;color:var(--fg);margin-left:6px}
+.legend .grp:first-child{margin-left:0}
+.legend .note2{flex-basis:100%}
+.legend .ramp{display:inline-block;width:150px;height:12px;border-radius:2px;margin:0 6px;border:1px solid rgba(0,0,0,.15)}
+.pull{font:600 26px/1.25 var(--display);border-left:6px solid var(--hot);padding:4px 0 4px 18px;margin:30px 0}
+.note{background:var(--panel);border:1px solid var(--rule);padding:14px 16px;font-size:16px;margin:22px 0}
+.note h3{margin-top:0}
+.cards{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin:20px 0}
+@media (max-width:760px){.cards{grid-template-columns:1fr 1fr}}
+@media (max-width:480px){.cards{grid-template-columns:1fr}}
+.card{background:var(--card);border:1px solid var(--border);border-left:8px solid var(--c,var(--hot));padding:12px 14px;font:400 13px/1.5 var(--mono)}
+.card b{font:600 19px/1.2 var(--display);display:block;margin-bottom:2px}
+.card .big{font:900 28px/1.05 var(--display);margin:6px 0 2px}
+.card .big span{color:var(--muted);font:400 13px/1 var(--mono)}
+.card button{margin-top:8px}
+details{margin:14px 0}
+summary{font:500 13px/1.4 var(--mono);cursor:pointer;color:var(--fg);padding:8px 0}
+.cta{display:flex;gap:10px;flex-wrap:wrap;margin:18px 0}
+.cta a{font:500 13px/1 var(--mono);text-decoration:none;border:1px solid var(--fg);padding:11px 14px;border-radius:3px}
+.cta a.p{background:var(--hot);border-color:var(--hot);color:#fff}
+footer{border-top:6px double var(--fg);margin-top:56px;padding-top:16px;font:400 13px/1.55 var(--mono);color:var(--muted)}
+footer p{margin:0 0 10px}
+.theme{position:fixed;right:12px;bottom:12px;z-index:1002}
+.loadmsg{font:400 12px var(--mono);color:var(--muted);min-height:16px}
+@media print{.theme,.controls{display:none}}
+</style>
+</head>
+<body>
+<div class="wrap">
+<div class="kicker"><b>Data study</b><span>Farming</span><span>World, 2026</span></div>
+<header class="hero">
+  <h1>What the <span class="a">world</span> <span class="b">grows</span></h1>
+  <svg class="mark" viewBox="0 0 120 120" aria-hidden="true"><g id="heroMark"></g></svg>
+  <p class="dek">Wheat across the steppes, rice through monsoon Asia, maize and soya beans in the Americas, oil palm in Indonesia and Malaysia, cocoa in West Africa. A map of the world's farmland: the leading crop on every 10 km square, 34 crops one by one, and every country's cropland and pasture since 1961.</p>
+</header>
+<div class="byline">Dr Tristan Hotham · Independent researcher · 2026 · Data: CROPGRIDS (Tang et al. 2024); FAOSTAT (FAO); Natural Earth</div>
+
+<div class="stats">
+  <div><b class="h">{{grid.half_on_land_pct|f1}}%</b><span>of the world's land holds half the harvested area of these 34 crops</span></div>
+  <div><b class="g">{{crops.top4_share_2024|pc}}</b><span>of all harvested land is wheat, maize, rice or soya beans</span></div>
+  <div><b class="c">{{land.past_of_agri|pc}}</b><span>of farmland is pasture and grazing; {{land.crop_of_agri|pc}} is cropland</span></div>
+  <div><b>×{{crops.by_k.soybean.x|f1}}</b><span>the area of soya beans since 1961; oil palm ×{{crops.by_k.oilpalm.x|f1}}</span></div>
+</div>
+
+<p class="lede">Most maps of farming show a country as a single colour. But a country is not one farm. The Punjab grows wheat in winter and rice in summer, the American Midwest is a patchwork of maize and soya beans, and a few hundred kilometres can take you from olive groves to wheat fields to grazing land. So I tried to map what the world grows at the finest scale open data allows, and to set it beside the longer story of how much land we farm and where that has changed.</p>
+<p>Two sources do the work. <b>CROPGRIDS</b>, a global dataset published in 2024, estimates the harvested and physical area of 173 crops on a grid of 0.05 degrees (about 5.6 km at the equator) for around 2020. I use its {{meta.n_crops|int}} biggest and best-known crops, which between them cover {{fao.share34_2020|pc}} of the world's harvested area in FAO's figures. <b>FAOSTAT</b>, the statistics of the UN Food and Agriculture Organization, gives every country's cropland, pasture and forest, and the harvested area of {{fao.n_items|int}} crops, every year since 1961. Choose a view, then click anywhere on the map.</p>
+
+<h2><span class="n">01 · The map</span>Every field, back to its crop</h2>
+<div class="bleed" id="atlas">
+<div class="controls">
+  <div class="scrollrow tabs" id="gridTabs"><span class="ctl-l">Crops</span></div>
+</div>
+<div class="controls">
+  <div class="scrollrow tabs" id="luTabs"><span class="ctl-l">Countries</span></div>
+</div>
+<div class="controls">
+  <div class="scrollrow" id="cropRow" hidden><span class="ctl-l">Crop</span></div>
+</div>
+<div class="controls">
+  <div class="searchbox"><input type="search" id="q" placeholder="Search a country or a crop" aria-label="Search a country or a crop" autocomplete="off"><ul class="suggest" id="sug" role="listbox"></ul></div>
+</div>
+<div class="controls">
+  <div class="scrollrow" id="focusRow"><span class="ctl-l">Zoom to</span></div>
+</div>
+<div class="mapgrid">
+  <div><div id="map" class="lmap" role="application" aria-label="World crop map"></div>
+    <div class="loadmsg" id="loadMsg"></div>
+    <div class="legend" id="legend"></div></div>
+  <div class="side" id="side" aria-live="polite"></div>
+</div>
+<p class="src" id="mapsrc"></p>
+</div>
+
+<h2><span class="n">02 · Farmland</span>A third of the land, and most of it grass</h2>
+<p>FAO counts {{land.agri_2023|mha}} million hectares of farmland in {{land.year|raw}}, {{land.agri_share|pc}} of the world's land. Only a third of it is cropland, land under arable crops, orchards and plantations: {{land.crop_2023|mha}} million hectares, or {{land.crop_share|pc}} of the land. The other two thirds, {{land.past_2023|mha}} million hectares, are permanent meadows and pastures, from Mongolian steppe to Australian rangeland to Irish grass. Forest covers {{land.forest_share|pc}}.</p>
+<div class="figure"><p class="fig-h">World cropland and pasture, 1961 to {{land.year|raw}}</p><p class="fig-sub">Million hectares. FAOSTAT land use, sum of all countries. Hover for values.</p><div class="chart" id="landChart"></div></div>
+<p>The two lines tell different stories. Cropland has grown by {{land.crop_gain_mha|int}} million hectares since 1961 ({{land.crop_chg_pct|pc}}) and was larger in {{land.crop_peak_year|raw}} than ever before. Pasture rose until {{land.past_peak_year|raw}} and has since fallen, so that the world's total farmland peaked in {{land.agri_peak_year|raw}} and is now {{land.agri_since_peak_mha|int}} million hectares smaller. India, the United States, China and Russia hold the most cropland. Rwanda and Bangladesh have the highest share of their land under crops ({{land.top_crop_pct.0.v|pc}} and {{land.top_crop_pct.1.v|pc}}), and Kazakhstan has the most per person, {{land.top_crop_pp.0.v|f1}} hectares, against {{land.GBR.crop_ha_pp|f2}} in the United Kingdom.</p>
+<div class="cta"><a href="#atlas" data-show="lu_crop">Map: cropland share</a><a href="#atlas" data-show="lu_pp">Map: cropland per person</a><a href="#atlas" data-show="lu_past">Map: pasture share</a></div>
+
+<h2><span class="n">03 · Where farmland moved</span>Out of Europe and North America, into the tropics</h2>
+<p>Of the {{land.n_since_1961|int}} countries with figures for both 1961 and today, cropland grew in {{land.n_grew|int}} and shrank in {{land.n_shrank|int}}. The biggest gains, comparing 1961 to 1963 with 2021 to 2023, were in Brazil (+{{land.top_gain_kha.0.v|kmha}} million hectares), Argentina (+{{land.top_gain_kha.1.v|kmha}}), Indonesia (+{{land.top_gain_kha.2.v|kmha}}) and China (+{{land.top_gain_kha.3.v|kmha}}), then Nigeria and Australia. The biggest loss by far was in the United States ({{land.top_loss_kha.0.v|kmhaabs}} million hectares fewer), then Italy, Poland, Spain and France. The countries of the former Soviet Union farm {{land.ussr.loss_since_1990_mha|f1}} million hectares less cropland than the USSR did in the late 1980s.</p>
+<div class="figure"><p class="fig-h">The biggest changes in cropland since 1961</p><p class="fig-sub">Million hectares, 2021 to 2023 average against 1961 to 1963. Countries that existed in 1961.</p><div class="chart" id="chgChart"></div></div>
+<div class="cta"><a href="#atlas" data-show="lu_chg">Map: change in cropland since 1961</a></div>
+
+<h2><span class="n">04 · The crops</span>Four crops, half the harvest</h2>
+<p>FAO records {{fao.world_ha_2024|mha}} million hectares of crops harvested in 2024, {{fao.growth_pct|pc}} more than in 1961 (land cropped twice in a year counts twice). Wheat ({{crops.by_k.wheat.ha_2024|mha}} million hectares), maize ({{crops.by_k.maize.ha_2024|mha}}), rice ({{crops.by_k.rice.ha_2024|mha}}) and soya beans ({{crops.by_k.soybean.ha_2024|mha}}) together cover {{crops.top4_share_2024|pc}} of it. The growth since 1961 has been driven by oil and animal feed: soya beans, oil palm and maize alone account for {{crops.soy_palm_maize_gain_share|pc}} of the extra {{crops.world_gain_mha|int}} million hectares. Oil palm has grown eightfold and soya beans sixfold. The losers are the old cereals of northern Europe: the world harvests {{crops.by_k.rye.chg_pct|pcabs}} less rye and {{crops.by_k.oats.chg_pct|pcabs}} less oats than in 1961.</p>
+<div class="figure"><p class="fig-h">Harvested area of the 34 crops, 1961 and 2024</p><p class="fig-sub">Million hectares, FAOSTAT. The bar is 2024; the tick is 1961. Click a crop to map it.</p><div class="chart" id="cropChart"></div></div>
+
+<h2><span class="n">05 · The belts</span>Rice in Asia, cocoa in West Africa</h2>
+<p>On the grid, wheat is the leading crop on {{grid.dom_by_k.wheat|pc}} of the world's farmed 10 km squares (those where these crops cover at least 1% of the land), maize on {{grid.dom_by_k.maize|pc}}, rice on {{grid.dom_by_k.rice|pc}} and soya beans on {{grid.dom_by_k.soybean|pc}}. Cereals lead on {{grid.dom_fam_cells.cereal|pc}} of farmed squares. Some crops are tied to a few places: {{belts.rice_asia|pc}} of the world's rice is harvested in South, Southeast and East Asia, {{belts.soy_americas|pc}} of its soya beans in the Americas, {{belts.palm_idn_mys|pc}} of its oil palm in Indonesia and Malaysia, and {{belts.cocoa_wafrica|pc}} of its cocoa in West Africa, {{belts.cocoa_civ_gha|pc}} in Côte d'Ivoire and Ghana alone.</p>
+<div class="cards" id="beltCards"></div>
+<p>Most places grow a mix. In just over half of the world's harvested area ({{grid.share_area_dom_half|pc}}) one crop takes at least half the land of its 10 km square; the average square, weighted by area, has the diversity of {{grid.div_mean_area_weighted|f1}} equally common crops. The most mixed farming, on this measure, is in Belarus, Haiti, the Central African Republic and Nigeria; the most single-minded is in Malaysia (oil palm), Afghanistan and Kazakhstan (wheat) and Bangladesh (rice).</p>
+<div class="cta"><a href="#atlas" data-show="div">Map: crop diversity</a></div>
+
+<h2><span class="n">06 · Country by country</span>What each country grows most</h2>
+<p>By harvested area, averaged over 2022 to 2024, wheat is the biggest crop in {{top_crop.by.Wheat|int}} of {{top_crop.n_countries|int}} countries, maize in {{top_crop.by.Maize|int}} and rice in {{top_crop.by.Rice|int}}, and coconuts lead in {{top_crop.by.Coconuts|int}}, all of them island states. The United States, Brazil and Argentina grow more soya beans than anything else, Ukraine more sunflowers, Malaysia and Indonesia more oil palm, Côte d'Ivoire more cocoa and Spain more olives.</p>
+<div class="figure"><p class="fig-h">The biggest crop in each country</p><p class="fig-sub">Number of countries in which each crop has the largest harvested area (FAOSTAT, 2022 to 2024 average, {{top_crop.n_countries|int}} countries).</p><div class="chart" id="topChart"></div></div>
+<p>The biggest crop is often the expected one. The speciality is more revealing: the crop a country grows far more of, relative to its farmland, than the world does. I measure it with a location quotient, a crop's share of a country's harvested area divided by its share of the world's, among crops that fill at least 1% of the country's harvested land. Saudi Arabia gives {{spec.SAU.share|pc}} of its harvested area to dates, {{spec.SAU.lq|int}} times the world share. Madagascar's speciality is vanilla, New Zealand's kiwi fruit, Bolivia's quinoa, Turkey's hazelnuts and the United Kingdom's field beans.</p>
+<div class="cards" id="specCards"></div>
+<div class="cta"><a href="#atlas" data-show="top">Map: the biggest crop</a><a href="#atlas" data-show="spec">Map: the speciality</a></div>
+
+<h2><span class="n">07 · The United Kingdom</span>Wheat, barley and a yellow spring</h2>
+<p>The UK is mostly grass: pasture covers {{uk.lu.past_pct|pc}} of its land and cropland {{uk.lu.crop_pct|pc}}, and its cropland is {{uk.lu.crop_chg_pct|pcabs}} smaller than in the early 1960s. On the arable land, wheat, barley and rapeseed fill {{uk.wbr_share_2224|pc}} of the harvested area, and wheat alone {{uk.wheat_share_2224|pc}}. On the 5 km grid, wheat is the leading crop in squares holding {{uk.dom_by_k.wheat|pc}} of the UK's harvested area, mostly in the east and south, and barley in squares holding {{uk.dom_by_k.barley|pc}}, from the Borders to Aberdeenshire and Northern Ireland.</p>
+<div class="figure"><p class="fig-h">UK harvested area, 1961 to 2024</p><p class="fig-sub">Thousand hectares, FAOSTAT. Hover for values.</p><div class="chart" id="ukChart"></div></div>
+<p>Sixty years have reshuffled the fields. Oats fell from {{uk.oats.1961|int}} hectares in 1961 to {{uk.oats.2024|int}} in 2024 and potatoes from {{uk.potato.1961|int}} to {{uk.potato.2024|int}}. Rapeseed, the crop that turns fields yellow in May, barely existed in 1961 ({{uk.rapeseed.1961|int}} hectares), passed 10,000 hectares in {{uk.rapeseed.first_10k_year|raw}} and peaked at {{uk.rapeseed.peak|int}} in {{uk.rapeseed.peak_year|raw}} before falling back to {{uk.rapeseed.2024|int}}. Field beans, the UK's speciality, have grown from almost nothing to {{uk.fieldbean.2024|int}} hectares.</p>
+<p class="note"><b>A note on UK maize.</b> CROPGRIDS puts {{grid.eu_maize.GBR|int}} hectares of maize in the UK, but FAOSTAT records no grain maize there at all. The UK cells come from a European source dataset within CROPGRIDS, probably counting maize grown for silage, so on the world map maize leads in many pastoral squares of the west and in Ireland. The UK figures above leave maize out.</p>
+<div class="cta"><a href="#atlas" data-focus="UK">The UK on the map</a></div>
+
+<h2><span class="n">08 · How detailed can we get?</span>About 10 km for 2020, country by year since 1961</h2>
+<p>The finest open global picture of crops is CROPGRIDS, at 0.05 degrees: {{grid.native_cells|int}} grid cells with at least one of these crops. It is a model, not a census. Its authors combined 29 earlier maps (national and regional statistics, satellite crop maps and older global grids such as SPAM and Monfreda's maps) and adjusted them to FAOSTAT. Where an input was coarser, CROPGRIDS spreads it across finer cells, so the true detail is often nearer 10 km than 5 km. That is why the map here uses 0.1 degree squares (about 11 km), and why single squares should not be read too literally. CROPGRIDS gives each cell a quality score from 0 to 1; the area-weighted average for these crops is {{grid.qual_mean|f2}}, lowest for sesame, rubber, oats and rye.</p>
+<p>It is also a single snapshot, around 2020. For change over time the detail falls to the country: FAOSTAT has every country's harvested area for each crop every year since 1961, and land use to {{land.year|raw}}. Countries that broke up, such as the Soviet Union, Yugoslavia and Czechoslovakia, start again from their first year as new states. Summed by country, CROPGRIDS and FAOSTAT 2020 agree closely (correlation {{grid.cg_fao_r_log|f2}} on a log scale across {{grid.cg_fao_n|int}} countries; CROPGRIDS totals {{grid.cg_vs_fao_pct|pc}} of FAOSTAT's area for these crops), but single crops in single countries can differ a lot.</p>
+<p class="pull">Half of the world's harvested area of these crops lies on {{grid.half_on_land_pct|f1}}% of its land.</p>
+
+<h2><span class="n">09 · How I did this</span>Methods and caveats</h2>
+<p><b>Crops on the grid.</b> I summed the CROPGRIDS harvested area of each of the {{meta.n_crops|int}} crops from 0.05 to 0.1 degree squares. In each square the dominant crop is the one with the largest harvested area and the diversity is the effective number of crops (the exponential of the Shannon index of their shares). A square counts as farmed when these crops' harvested area is at least 1% of its area. Harvested area counts land twice when it is cropped twice, which matters for rice. The concentration figure ranks squares by harvested area per hectare of land and asks how much land holds half the total.</p>
+<p><b>Countries.</b> FAOSTAT land use (country area, cropland, permanent meadows and pastures, forest) and crop harvested area, with regional totals removed and China counted once (mainland China and Taiwan separately). The biggest crop and the speciality use the 2022 to 2024 average of all {{fao.n_items|int}} FAOSTAT crops; specialities are for countries with at least 100,000 hectares harvested. Change in cropland compares three-year averages to smooth single bad years.</p>
+<p><b>What this is not.</b> It is a map of area, not of production, value or calories: a hectare of wheat in Kazakhstan and a hectare of tomatoes in the Netherlands count the same. The 34 crops leave out vegetables, most fruit and fodder crops. The grid is modelled and in places wrong (see the note on UK maize), and FAOSTAT figures for some countries are estimates.</p>
+<details><summary>Sources and licences</summary>
+<ul>
+<li>CROPGRIDS v1.08: Tang, F.H.M., Nguyen, T.H., Conchedda, G., Casse, L., Tubiello, F.N. and Maggi, F. (2024) CROPGRIDS: a global geo-referenced dataset of 173 crops. Scientific Data 11, 413. Data on figshare (article 22491997). CC BY 4.0.</li>
+<li>FAOSTAT, Crops and livestock products and Land use domains, bulk downloads retrieved {{meta.retrieved|raw}}. FAO, CC BY 4.0.</li>
+<li>Natural Earth countries and populated places (public domain).</li>
+<li>Base map tiles © Esri.</li>
+</ul></details>
+
+<div class="cta"><a class="p" href="https://doi.org/{{DOI}}">Read the paper</a><a href="https://github.com/Tristan-Hotham/crop-map">Data and code</a><a href="https://blog.tristanhotham.com/2026/10/31/crop-map/">Blog post</a><a href="https://blog.tristanhotham.com/">Blog home</a></div>
+
+<footer>
+<p>Dr Tristan Hotham, Independent researcher. ORCID <a href="https://orcid.org/0000-0003-4931-9349">0000-0003-4931-9349</a>.</p>
+<p>Cite as: Hotham, T. (2026) What the world grows: farmland and crops from CROPGRIDS and FAOSTAT. Zenodo. <a href="https://doi.org/{{DOI}}">https://doi.org/{{DOI}}</a></p>
+<p>Data: CROPGRIDS (Tang et al. 2024, CC BY 4.0) and FAOSTAT (FAO, CC BY 4.0). Licence: text, figures and derived data CC BY 4.0, code MIT.</p>
+<p>I wrote the text, with drafting and editing assistance from Claude (Anthropic), which also helped prepare the analysis code. I reviewed and checked all text and results.</p>
+</footer>
+</div>
+<div class="tip" id="tip"></div>
+<button class="btn theme" id="theme" aria-label="Toggle dark mode">◐</button>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
+<script>
+const R = /*RESULTS*/;
+const SITE = /*SITE*/;
+const WORLD = /*WORLD*/;
+const CITIES = /*CITIES*/;
+const fmt = n => n == null || n === "" ? "n/a" : Math.round(n).toLocaleString("en-GB");
+const f1 = n => n == null ? "n/a" : (+n).toLocaleString("en-GB", { minimumFractionDigits: 1, maximumFractionDigits: 1 });
+const esc = s => String(s ?? "").replace(/[&<>"]/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
+const tip = document.getElementById("tip");
+function showTip(h, x, y) { tip.innerHTML = h; tip.style.display = "block"; const w = tip.offsetWidth; x = Math.max(w / 2 + 8, Math.min(innerWidth - w / 2 - 8, x)); tip.style.left = x + scrollX + "px"; tip.style.top = y + scrollY + "px"; }
+function hideTip() { tip.style.display = "none"; }
+document.addEventListener("click", hideTip);
+const NS = "http://www.w3.org/2000/svg";
+const el = (t, a, p) => { const e = document.createElementNS(NS, t); for (const k in a) e.setAttribute(k, a[k]); if (p) p.appendChild(e); return e; };
+const lbl = (svg, x, y, s, cls = "lab", anchor = "start") => { const t = el("text", { x, y, class: cls, "text-anchor": anchor }, svg); t.textContent = s; return t; };
+const redraws = [];
+function resp(box, render) { let last = 0; const go = force => { const w = Math.max(280, Math.round(box.clientWidth)); if (!force && Math.abs(w - last) < 4) return; last = w; box.innerHTML = ""; render(w, w < 560); }; new ResizeObserver(() => go()).observe(box); go(); redraws.push(() => go(true)); }
+const isDark = () => { const r = document.documentElement; return r.dataset.theme ? r.dataset.theme === "dark" : matchMedia("(prefers-color-scheme: dark)").matches; };
+const css = v => getComputedStyle(document.documentElement).getPropertyValue(v).trim();
+const CN = iso => (SITE.cname[iso] || iso);
+const small = () => innerWidth < 900;
+
+/* ---------- crops, families, colours ---------- */
+const CROPS = SITE.crops; const CK = CROPS.map(c => c[0]); const CI = {}; CROPS.forEach((c, i) => CI[c[0]] = i);
+const FAM = {}; SITE.fams.forEach(([k, l, c]) => FAM[k] = { l, c });
+const ITEM = SITE.items; const itemName = c => ITEM[c] ? ITEM[c][0] : "";
+const CROPFAO = { wheat: 15, maize: 56, rice: 27, barley: 44, sorghum: 83, millet: 79, oats: 75, rye: 71, soybean: 236, rapeseed: 270, sunflower: 267, groundnut: 242, sesame: 289, bean: 176, chickpea: 191, cowpea: 195, lentil: 201, pea: 187, cassava: 125, potato: 116, yam: 137, sugarcane: 156, sugarbeet: 157, oilpalm: 254, coconut: 249, coffee: 656, cocoa: 661, tea: 667, rubber: 836, olive: 260, grape: 560, banana: 486, plantain: 489, cotton: 328 };
+const hex = h => [1, 3, 5].map(i => parseInt(h.slice(i, i + 2), 16));
+function mix(a, b, t) { const A = hex(a), B = hex(b); return "#" + A.map((x, i) => Math.round(x + (B[i] - x) * t).toString(16).padStart(2, "0")).join(""); }
+
+/* hero mark: a field of furrows, one band per crop family, sized by harvested area */
+(function () {
+  const g = document.getElementById("heroMark"); const agg = {};
+  R.crops.rows.forEach(r => agg[r.fam] = (agg[r.fam] || 0) + r.ha_2024);
+  const keys = ["cereal", "oil", "pulse", "root", "sugar", "tree", "fibre"]; const tot = keys.reduce((s, k) => s + agg[k], 0);
+  const clip = el("clipPath", { id: "fieldClip" }, g); el("path", { d: "M8 112 L38 14 L82 14 L112 112 Z" }, clip);
+  const gr = el("g", { "clip-path": "url(#fieldClip)" }, g); let x = 0;
+  keys.forEach(k => { const w = 120 * agg[k] / tot; el("rect", { x, y: 0, width: w + .5, height: 120, fill: FAM[k].c }, gr); x += w; });
+  for (let i = 1; i < 7; i++) { const xb = 8 + i * 104 / 7, xt = 38 + i * 44 / 7; el("path", { d: `M${xt} 14 L${xb} 112`, stroke: "#fff", "stroke-opacity": .5, "stroke-width": 1.4 }, gr); }
+  el("path", { d: "M8 112 L38 14 L82 14 L112 112 Z", fill: "none", stroke: "currentColor", "stroke-width": 3, "stroke-linejoin": "round" }, g);
+})();
+
+/* ---------- map machinery: base tiles, hills, labels, place names, borders ---------- */
+const ESRI = "https://server.arcgisonline.com/ArcGIS/rest/services/";
+const ESRI_ATT = 'Tiles &copy; Esri, HERE, Garmin, USGS, NGA, &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, and the GIS user community';
+const LYDEF = { base: "plain", hills: true, hillK: 45, labels: false, labelK: 80, names: true, nameLvl: 1, cnames: true, borders: true, colour: 90, grid: true, fade: true };
+const LY = { ...LYDEF };
+try { Object.assign(LY, JSON.parse(localStorage.getItem("crops_layers") || "{}")); } catch (e) {}
+const saveLY = () => { try { localStorage.setItem("crops_layers", JSON.stringify(LY)); } catch (e) {} };
+const map = L.map("map", { minZoom: 1, maxZoom: 11, maxBounds: [[-75, -200], [86, 200]], zoomSnap: .5 }).setView([25, 12], small() ? 1 : 2);
+["hills:250", "fill:400", "grid:420", "labels:450", "names:620"].forEach(s => { const [n, z] = s.split(":"); map.createPane(n); map.getPane(n).style.zIndex = z; });
+["hills", "labels", "names", "grid"].forEach(n => map.getPane(n).style.pointerEvents = "none");
+let base = null, hills = null, labels = null; const names = L.layerGroup(), cnames = L.layerGroup();
+function setTiles() {
+  [base, labels, hills].forEach(l => { if (l) map.removeLayer(l); });
+  const t = isDark() ? "Dark" : "Light";
+  const url = LY.base === "relief" ? ESRI + "World_Shaded_Relief/MapServer/tile/{z}/{y}/{x}" : LY.base === "satellite" ? ESRI + "World_Imagery/MapServer/tile/{z}/{y}/{x}" : `${ESRI}Canvas/World_${t}_Gray_Base/MapServer/tile/{z}/{y}/{x}`;
+  base = L.tileLayer(url, { maxZoom: 16, maxNativeZoom: LY.base === "relief" ? 13 : 16, attribution: ESRI_ATT }).addTo(map);
+  hills = L.tileLayer(ESRI + "Elevation/World_Hillshade/MapServer/tile/{z}/{y}/{x}", { maxZoom: 16, maxNativeZoom: 16, pane: "hills" });
+  labels = L.tileLayer(`${ESRI}Canvas/World_${t}_Gray_Reference/MapServer/tile/{z}/{y}/{x}`, { maxZoom: 16, pane: "labels" });
+  applyLayers();
+}
+function applyLayers() {
+  if (!base) return;
+  if (LY.hills) { hills.addTo(map); hills.setOpacity(Math.min(1, .15 + LY.hillK / 120)); } else map.removeLayer(hills);
+  if (LY.labels) { labels.addTo(map); labels.setOpacity(LY.labelK / 100); } else map.removeLayer(labels);
+  if (LY.names) names.addTo(map); else map.removeLayer(names);
+  if (LY.cnames) cnames.addTo(map); else map.removeLayer(cnames);
+  if (gridL) { if (LY.grid && isGrid()) { if (!map.hasLayer(gridL)) gridL.addTo(map); gridL.setOpacity(LY.colour / 100); gridL.redraw(); } else if (map.hasLayer(gridL)) map.removeLayer(gridL); }
+  restyle(); placeNames();
+}
+function placeNames() {
+  names.clearLayers(); cnames.clearLayers();
+  const z = map.getZoom(), bb = map.getBounds().pad(.05); const boxes = [];
+  if (LY.names) {
+    const minPop = [[2, 8e6], [3, 3e6], [4, 1e6], [5, 4e5], [6, 1.5e5], [99, 6e4]].find(([zz]) => z < zz + (LY.nameLvl === 2 ? 1.5 : LY.nameLvl === 0 ? -1 : 0))[1] * (LY.nameLvl === 0 ? 2 : 1);
+    let n = 0;
+    for (const c of CITIES) {
+      if (c.pop < minPop || !bb.contains([c.lat, c.lon])) continue;
+      const pt = map.latLngToContainerPoint([c.lat, c.lon]), big = c.pop >= 5e6;
+      const bx = [pt.x - 4, pt.y - 8, pt.x + 10 + c.name.length * (big ? 6.9 : 6.3), pt.y + 7];
+      if (boxes.some(o => bx[0] < o[2] && bx[2] > o[0] && bx[1] < o[3] && bx[3] > o[1])) continue;
+      boxes.push(bx); L.marker([c.lat, c.lon], { pane: "names", interactive: false, keyboard: false, icon: L.divIcon({ className: "cityL" + (big ? "" : " s"), html: `<i></i>${esc(c.name)}`, iconSize: null, iconAnchor: [3, 6] }) }).addTo(names);
+      if (++n >= 140) break;
+    }
+  }
+  if (LY.cnames && z >= 3 && z < 7) {
+    WORLD.features.forEach(f => { const g = SITE.cpos[f.properties.iso]; if (!g || !bb.contains([g[1], g[0]])) return; const nm = CN(f.properties.iso);
+      if (z < 4 && (g[2] || 0) < 2e7) return; const pt = map.latLngToContainerPoint([g[1], g[0]]), w = nm.length * 7.2;
+      const bx = [pt.x - w / 2, pt.y - 7, pt.x + w / 2, pt.y + 7]; if (boxes.some(o => bx[0] < o[2] && bx[2] > o[0] && bx[1] < o[3] && bx[3] > o[1])) return; boxes.push(bx);
+      L.marker([g[1], g[0]], { pane: "names", interactive: false, keyboard: false, icon: L.divIcon({ className: "cntL", html: esc(nm), iconSize: [w, 14], iconAnchor: [w / 2, 7] }) }).addTo(cnames); });
+  }
+}
+(function layerControl() {
+  const Ctl = L.Control.extend({ options: { position: "topright" }, onAdd() {
+    const d = L.DomUtil.create("div"); L.DomEvent.disableClickPropagation(d); L.DomEvent.disableScrollPropagation(d);
+    d.innerHTML = `<button class="lyrBtn" aria-expanded="false">Map layers</button>
+<div class="lyrPanel" hidden>
+ <div class="row"><label style="font-weight:600">Base map</label><div class="sub"><select data-k="base" aria-label="Base map"><option value="plain">Plain grey</option><option value="relief">Shaded relief</option><option value="satellite">Satellite</option></select></div></div>
+ <div class="row"><label><input type="checkbox" data-k="hills"> Hills and mountains</label><div class="sub"><span>strength</span><input type="range" data-k="hillK" min="10" max="100" step="5" aria-label="Hill shading strength"></div></div>
+ <div class="row"><label><input type="checkbox" data-k="labels"> Map labels</label><div class="sub"><span>strength</span><input type="range" data-k="labelK" min="20" max="100" step="5" aria-label="Map label strength"></div></div>
+ <div class="row"><label><input type="checkbox" data-k="names"> Bold city names</label><div class="sub"><span>how many</span><select data-k="nameLvl" aria-label="How many city names"><option value="0">Biggest only</option><option value="1">Some</option><option value="2">Lots</option></select></div></div>
+ <div class="row"><label><input type="checkbox" data-k="cnames"> Country names</label></div>
+ <div class="row"><label><input type="checkbox" data-k="borders"> Borders</label></div>
+ <div class="hd">Crops</div>
+ <div class="row"><label><input type="checkbox" data-k="grid"> Crop grid (10 km squares)</label></div>
+ <div class="row"><label><input type="checkbox" data-k="fade"> Fade thinly farmed squares</label></div>
+ <div class="row"><label style="font-weight:600">Colour</label><div class="sub"><span>strength</span><input type="range" data-k="colour" min="20" max="100" step="5" aria-label="Colour strength"></div></div>
+ <button class="reset">Reset layers</button>
+</div>`;
+    return d; } });
+  map.addControl(new Ctl());
+  const box = map.getContainer(), btn = box.querySelector(".lyrBtn"), pan = box.querySelector(".lyrPanel");
+  btn.onclick = () => { const o = pan.hidden; pan.hidden = !o; btn.setAttribute("aria-expanded", o); };
+  const sync = () => pan.querySelectorAll("[data-k]").forEach(i => { const k = i.dataset.k; if (i.type === "checkbox") i.checked = LY[k]; else i.value = LY[k]; });
+  pan.querySelectorAll("[data-k]").forEach(i => i.addEventListener(i.type === "range" ? "input" : "change", () => {
+    const k = i.dataset.k; LY[k] = i.type === "checkbox" ? i.checked : (k === "base" ? i.value : +i.value);
+    if (k === "hillK") LY.hills = true; if (k === "labelK") LY.labels = true; if (k === "nameLvl") LY.names = true;
+    sync(); saveLY(); if (k === "base") setTiles(); else applyLayers();
+  }));
+  pan.querySelector(".reset").onclick = () => { Object.assign(LY, LYDEF); saveLY(); sync(); setTiles(); };
+  sync();
+})();
+const Note = L.Control.extend({ options: { position: "bottomleft" }, onAdd() { const d = L.DomUtil.create("div", "mapnote"); d.id = "mapnote"; L.DomEvent.disableClickPropagation(d); return d; } });
+map.addControl(new Note());
+L.control.scale({ imperial: false, position: "bottomright" }).addTo(map);
+function note(h) { document.getElementById("mapnote").innerHTML = h || ""; }
+
+/* ---------- state and modes ---------- */
+const S = { mode: "dom", crop: "wheat", sel: null, cell: null };
+const GRIDM = [["dom", "Leading crop", "#B5562E"], ["crop", "One crop", "#C9921A"], ["div", "Crop diversity", "#2E6B4F"], ["dens", "How much is farmed", "#6B5A2E"]];
+const LUM = [["lu_crop", "Cropland share", "#8A6A12"], ["lu_past", "Pasture share", "#5E8A3A"], ["lu_pp", "Cropland per person", "#7B4F9E"], ["lu_chg", "Change since 1961", "#3E5FB8"], ["top", "Biggest crop", "#B5562E"], ["spec", "Speciality", "#7A2E5A"]];
+const isGrid = () => ["dom", "crop", "div", "dens"].includes(S.mode);
+
+/* ---------- grids (PNG, decoded in the browser) ---------- */
+const GG = { w: 3600, h: 1280, top: 72, left: -180, cell: .1 };
+const D = { dom: null, dens: null, div: null, sec: null, share: null, phys: null, crops: {} };
+const LO = -4, HI = Math.log10(1.5);
+const codeToF = c => c ? Math.pow(10, LO + (c - 1) / 254 * (HI - LO)) : 0;
+const msg = document.getElementById("loadMsg");
+async function pixels(url) {
+  const blob = await (await fetch(url)).blob();
+  let src; try { src = await createImageBitmap(blob, { colorSpaceConversion: "none", premultiplyAlpha: "none" }); }
+  catch (e) { src = await new Promise((ok, no) => { const im = new Image(); im.onload = () => ok(im); im.onerror = no; im.src = URL.createObjectURL(blob); }); }
+  const c = document.createElement("canvas"); c.width = GG.w; c.height = GG.h; const x = c.getContext("2d", { willReadFrequently: true });
+  x.drawImage(src, 0, 0); return x.getImageData(0, 0, GG.w, GG.h).data;
+}
+const chan = (px, ch) => { const n = GG.w * GG.h, o = new Uint8Array(n); for (let i = 0; i < n; i++) o[i] = px[i * 4 + ch]; return o; };
+let baseP = null, base2P = null; const cropP = {};
+function loadBase() { if (!baseP) { msg.textContent = "Loading the crop grid..."; baseP = pixels("data/page/base.png").then(px => { D.dom = chan(px, 0); D.dens = chan(px, 1); D.div = chan(px, 2); msg.textContent = ""; }); } return baseP; }
+function loadBase2() { if (!base2P) base2P = pixels("data/page/base2.png").then(px => { D.sec = chan(px, 0); D.share = chan(px, 1); D.phys = chan(px, 2); }); return base2P; }
+function loadCrop(k) { const i = CI[k], f = Math.floor(i / 3); if (!cropP[f]) { msg.textContent = "Loading crop layer..."; cropP[f] = pixels(`data/page/crops_${f}.png`).then(px => { for (let j = 0; j < 3; j++) if (CK[f * 3 + j]) D.crops[CK[f * 3 + j]] = chan(px, j); msg.textContent = ""; }); } return cropP[f]; }
+const gIdx = (lat, lon) => { const r = Math.floor((GG.top - lat) / GG.cell), c = Math.floor((((lon + 180) % 360 + 360) % 360) / GG.cell); return r < 0 || r >= GG.h || c < 0 || c >= GG.w ? -1 : r * GG.w + c; };
+
+/* colour lookup tables */
+let LUT = null;
+function ramp(stops, n = 256) { const o = new Uint8ClampedArray(n * 4); for (let i = 0; i < n; i++) { const t = i / (n - 1), k = Math.min(stops.length - 2, Math.floor(t * (stops.length - 1))), u = t * (stops.length - 1) - k; const a = hex(stops[k]), b = hex(stops[k + 1]); for (let j = 0; j < 3; j++) o[i * 4 + j] = Math.round(a[j] + (b[j] - a[j]) * u); o[i * 4 + 3] = 255; } return o; }
+const DENS_STOPS = ["#F4E9B8", "#E2C46A", "#B9933A", "#7E6A2A", "#4A4A1E"];
+const DIV_STOPS = ["#F3E3B2", "#C9D98A", "#7FB77E", "#3B8C78", "#1F5F6B", "#24345E"];
+function alphaOf(dc) { if (!LY.fade) return dc ? 255 : 0; if (!dc) return 0; const f = codeToF(dc); const t = Math.max(0, Math.min(1, (Math.log10(f) + 3) / 2.6)); return Math.round(255 * (.18 + .82 * t)); }
+function buildLUT() {
+  const domRGB = [[0, 0, 0]].concat(CROPS.map(c => hex(c[3])));
+  const alpha = new Uint8Array(256); for (let i = 0; i < 256; i++) alpha[i] = alphaOf(i);
+  const cropRamp = S.crop ? ramp([isDark() ? "#3a3a30" : "#F6EFD6", mix(CROPS[CI[S.crop]][3], "#ffffff", .35), CROPS[CI[S.crop]][3], mix(CROPS[CI[S.crop]][3], "#000000", .45)]) : null;
+  LUT = { domRGB, alpha, dens: ramp(DENS_STOPS), div: ramp(DIV_STOPS), crop: cropRamp };
+}
+function colourAt(i) {
+  const dc = D.dens[i]; if (!dc) return null;
+  const a = LUT.alpha[dc];
+  if (S.mode === "dom") { const c = LUT.domRGB[D.dom[i]]; return D.dom[i] ? [c[0], c[1], c[2], a] : null; }
+  if (S.mode === "dens") { const j = dc * 4; return [LUT.dens[j], LUT.dens[j + 1], LUT.dens[j + 2], 255]; }
+  if (S.mode === "div") { const dv = D.div[i] / 20; const t = Math.max(0, Math.min(1, (dv - 1) / 7)); const j = Math.round(t * 255) * 4; return [LUT.div[j], LUT.div[j + 1], LUT.div[j + 2], a]; }
+  if (S.mode === "crop") { const A = D.crops[S.crop]; if (!A || !A[i]) return null; const v = A[i]; const t = Math.max(0, Math.min(1, (Math.log10(codeToF(v)) + 4) / 3.8)); const j = Math.round(t * 255) * 4; return [LUT.crop[j], LUT.crop[j + 1], LUT.crop[j + 2], Math.round(255 * (.35 + .65 * t))]; }
+  return null;
+}
+const RAD = 180 / Math.PI;
+const GridLayer = L.GridLayer.extend({
+  createTile(c) {
+    const t = document.createElement("canvas"); t.width = t.height = 256;
+    if (!D.dom || !LUT || (S.mode === "crop" && !D.crops[S.crop])) return t;
+    const ctx = t.getContext("2d"), img = ctx.createImageData(256, 256), d = img.data, n = 256 * Math.pow(2, c.z);
+    const cols = new Int32Array(256); for (let i = 0; i < 256; i++) { const lon = (c.x * 256 + i + .5) / n * 360 - 180; cols[i] = Math.floor((((lon + 180) % 360 + 360) % 360) / GG.cell); }
+    for (let j = 0; j < 256; j++) { const y = Math.PI * (1 - 2 * (c.y * 256 + j + .5) / n), lat = Math.atan(Math.sinh(y)) * RAD; const r = Math.floor((GG.top - lat) / GG.cell); if (r < 0 || r >= GG.h) continue;
+      for (let i = 0; i < 256; i++) { const col = colourAt(r * GG.w + cols[i]); if (!col || !col[3]) continue; const q = (j * 256 + i) * 4; d[q] = col[0]; d[q + 1] = col[1]; d[q + 2] = col[2]; d[q + 3] = col[3]; } }
+    ctx.putImageData(img, 0, 0); return t;
+  }
+});
+let gridL = null;
+function renderGrid() {
+  buildLUT();
+  if (!gridL) gridL = new GridLayer({ pane: "grid", opacity: LY.colour / 100, maxNativeZoom: 9, attribution: "Crops: CROPGRIDS v1.08 (Tang et al. 2024)" });
+  applyLayers();
+}
+
+/* ---------- country layer ---------- */
+const LUP = { lu_crop: 0, lu_past: 1, lu_pp: 3, lu_chg: 4 };
+const LURAMP = { lu_crop: { stops: ["#F6EBC8", "#E2BE62", "#B9862A", "#7A5512", "#4A3208"], bins: [2, 5, 10, 20, 35, 50], unit: "% of land" },
+  lu_past: { stops: ["#EEF2D8", "#C8DD98", "#8CBA5E", "#4F8A34", "#2A5A1E"], bins: [2, 10, 20, 35, 50, 65], unit: "% of land" },
+  lu_pp: { stops: ["#F1E8F5", "#CDB4E0", "#A07CC6", "#7B4F9E", "#4A2A66"], bins: [.05, .1, .2, .3, .5, 1], unit: "ha per person" },
+  lu_chg: { div: true, bins: [-50, -25, -10, 10, 25, 50, 100], unit: "% change" } };
+const CHG = ["#8C2D04", "#D06A2A", "#F0B37A", "#EFEADB", "#A8D5A2", "#5DAA6B", "#2E7D4F", "#145232"];
+function luVal(iso) { const c = SITE.c[iso]; if (!c || !c.lu) return null; return c.lu[LUP[S.mode]]; }
+function luCol(v) {
+  if (v == null) return null; const R1 = LURAMP[S.mode];
+  if (R1.div) { let k = 0; R1.bins.forEach((b, i) => { if (v >= b) k = i + 1; }); return CHG[k]; }
+  let k = -1; R1.bins.forEach((b, i) => { if (v >= b) k = i; }); if (k < 0) return mix(R1.stops[0], "#ffffff", .3); return R1.stops[Math.min(R1.stops.length - 1, Math.round(k * (R1.stops.length - 1) / (R1.bins.length - 1)))];
+}
+function cFill(iso) {
+  const c = SITE.c[iso];
+  if (S.mode in LUP) return luCol(luVal(iso));
+  if (S.mode === "top") return c && c.top ? ITEM[c.top[0][0]][2] : null;
+  if (S.mode === "spec") return c && c.sp ? ITEM[c.sp[0]][2] : null;
+  return null;
+}
+function cStyle(f) {
+  const iso = f.properties.iso, bd = css("--border") || "#999", sel = iso === S.sel;
+  if (isGrid()) return { color: sel ? css("--fg") : (isDark() ? "#5b5e52" : "#b9b19c"), weight: LY.borders ? (sel ? 2.2 : .5) : (sel ? 2 : 0), fillColor: css("--land"), fillOpacity: 0, opacity: LY.borders || sel ? 1 : 0 };
+  const fill = cFill(iso); const late = S.mode === "lu_chg" && SITE.c[iso] && SITE.c[iso].lu && SITE.c[iso].lu[8] > 1961;
+  return { color: sel ? css("--fg") : bd, weight: LY.borders ? (sel ? 2.4 : .6) : (sel ? 2 : 0), fillColor: fill || css("--land"), fillOpacity: (fill ? (late ? .45 : .9) : .5) * LY.colour / 100, opacity: 1 };
+}
+const cLayer = L.geoJSON(WORLD, { pane: "fill", style: cStyle, onEachFeature: (f, l) => {
+  l.on("click", e => { pickCountry(f.properties.iso, false); if (isGrid()) cellPopup(e.latlng); });
+  l.on("mousemove", e => { if (small()) return; const r = map.getContainer().getBoundingClientRect(); showTip(cTip(f.properties.iso, e.latlng), r.left + e.containerPoint.x, r.top + e.containerPoint.y); });
+  l.on("mouseout", hideTip);
+} }).addTo(map);
+map.on("click", e => { if (isGrid()) cellPopup(e.latlng); });
+function cTip(iso, ll) {
+  const c = SITE.c[iso] || {}; const nm = `<b>${esc(CN(iso))}</b>`;
+  if (isGrid()) { const i = D.dom ? gIdx(ll.lat, ll.lng) : -1; if (i < 0 || !D.dens[i]) return nm + "<br>No crops mapped here"; return nm + "<br>" + cellLine(i); }
+  if (S.mode in LUP) { const v = luVal(iso); if (v == null) return nm + "<br>No figure"; const late = c.lu[8] > 1961;
+    return nm + "<br>" + (S.mode === "lu_pp" ? `${(+v).toFixed(2)} ha of cropland per person` : S.mode === "lu_chg" ? `Cropland ${v >= 0 ? "+" : ""}${Math.round(v)}% since ${c.lu[8]}${late ? " (first year as a state)" : ""}` : `${f1(v)}% ${S.mode === "lu_crop" ? "cropland" : "pasture"}`); }
+  if (S.mode === "top") return nm + (c.top ? `<br>${esc(itemName(c.top[0][0]))}: ${f1(c.top[0][2])}% of harvested area` : "<br>No figure");
+  if (S.mode === "spec") return nm + (c.sp ? `<br>${esc(itemName(c.sp[0]))}: ${f1(c.sp[2])}% of harvested area, ${f1(c.sp[1])} times the world share` : "<br>No speciality (under 100,000 ha harvested)");
+  return nm;
+}
+function cellLine(i) {
+  const d = D.dom[i]; const f = codeToF(D.dens[i]);
+  let h = d ? `Leading crop: <b>${esc(CROPS[d - 1][1])}</b>` : "";
+  if (S.mode === "crop" && D.crops[S.crop]) h += `<br>${esc(CROPS[CI[S.crop]][1])}: ${pctTxt(codeToF(D.crops[S.crop][i]))} of the land`;
+  else if (S.mode === "div") h += `<br>Diversity: ${f1(D.div[i] / 20)} crops`;
+  else h += `<br>Harvested: ${pctTxt(f)} of the land`;
+  return h;
+}
+const pctTxt = f => f >= .995 ? Math.round(f * 100) + "%" : f >= .1 ? Math.round(f * 100) + "%" : f >= .01 ? (f * 100).toFixed(1) + "%" : f > 0 ? "under 1%" : "none";
+function restyle() { cLayer.setStyle(cStyle); }
+
+/* cell popup */
+async function cellPopup(ll) {
+  await loadBase(); await loadBase2(); if (S.mode === "crop") await loadCrop(S.crop);
+  const i = gIdx(ll.lat, ll.lng); if (i < 0) return;
+  const r = Math.floor(i / GG.w), c = i % GG.w, la = GG.top - (r + .5) * GG.cell, lo = -180 + (c + .5) * GG.cell;
+  let h = `<b>Square at ${Math.abs(la).toFixed(2)}°${la >= 0 ? "N" : "S"}, ${Math.abs(lo).toFixed(2)}°${lo >= 0 ? "E" : "W"}</b><br>`;
+  if (!D.dens[i]) h += "No crops mapped in this 10 km square.";
+  else {
+    const d = D.dom[i], s2 = D.sec[i];
+    h += `Leading crop: <span class="sw" style="background:${CROPS[d - 1][3]}"></span><b>${esc(CROPS[d - 1][1])}</b> (${D.share[i]}% of the harvested area)`;
+    if (s2) h += `<br>Next: <span class="sw" style="background:${CROPS[s2 - 1][3]}"></span>${esc(CROPS[s2 - 1][1])}`;
+    h += `<br>Harvested area: ${pctTxt(codeToF(D.dens[i]))} of the land<br>Crop land (physical): ${pctTxt(codeToF(D.phys[i]))}<br>Diversity: ${f1(D.div[i] / 20)} equally common crops`;
+    if (S.mode === "crop") h += `<br>${esc(CROPS[CI[S.crop]][1])}: ${pctTxt(codeToF(D.crops[S.crop][i]))} of the land`;
+  }
+  h += `<br><small>CROPGRIDS, about 2020, 0.1° square (about ${Math.round(11.1 * Math.cos(la * Math.PI / 180))} by 11 km).</small>`;
+  L.popup({ maxWidth: 290 }).setLatLng(ll).setContent(h).openOn(map);
+}
+
+/* ---------- legend, side panel ---------- */
+function legend() {
+  const e = document.getElementById("legend"); let h = "";
+  if (S.mode === "dom") {
+    const groups = ["cereal", "oil", "pulse", "root", "sugar", "tree", "fibre"];
+    groups.forEach(g => { h += `<span class="grp">${esc(FAM[g].l)}:</span>` + CROPS.filter(c => c[2] === g).map(c => `<span><i style="background:${c[3]}"></i>${esc(c[1])}</span>`).join(""); });
+    h += `<span class="note2">Fainter squares have less of their land under these crops.</span>`;
+  } else if (S.mode === "crop") {
+    const c = CROPS[CI[S.crop]]; h = `<span>Share of each 10 km square harvested as ${esc(c[1].toLowerCase())}:</span><span>0.01%<span class="ramp" style="background:linear-gradient(90deg,${isDark() ? "#3a3a30" : "#F6EFD6"},${mix(c[3], "#ffffff", .35)},${c[3]},${mix(c[3], "#000000", .45)})"></span>100%</span>`;
+  } else if (S.mode === "dens") { h = `<span>Harvested area of the 34 crops, share of the land:</span><span>0.01%<span class="ramp" style="background:linear-gradient(90deg,${DENS_STOPS.join(",")})"></span>100% or more</span><span>(over 100% where land is cropped twice a year)</span>`; }
+  else if (S.mode === "div") { h = `<span>Effective number of crops in each square:</span><span>1<span class="ramp" style="background:linear-gradient(90deg,${DIV_STOPS.join(",")})"></span>8 or more</span>`; }
+  else if (S.mode in LUP) {
+    const R1 = LURAMP[S.mode];
+    if (R1.div) h = ["below -50%", "-50 to -25%", "-25 to -10%", "-10 to +10%", "+10 to +25%", "+25 to +50%", "+50 to +100%", "over +100%"].map((t, i) => `<span><i style="background:${CHG[i]}"></i>${t}</span>`).join("") + `<span class="note2">Paler colours: countries formed after 1961, change since their first year.</span>`;
+    else h = R1.bins.map((b, i) => `<span><i style="background:${luCol(b)}"></i>${S.mode === "lu_pp" ? b : b + "%"}${i < R1.bins.length - 1 ? " to " + (S.mode === "lu_pp" ? R1.bins[i + 1] : R1.bins[i + 1] + "%") : "+"}</span>`).join("") + `<span>${esc(R1.unit)}</span>`;
+  } else if (S.mode === "top" || S.mode === "spec") {
+    const cnt = {}; Object.values(SITE.c).forEach(c => { const it = S.mode === "top" ? (c.top && c.top[0][0]) : (c.sp && c.sp[0]); if (it) cnt[it] = (cnt[it] || 0) + 1; });
+    const ks = Object.keys(cnt).sort((a, b) => cnt[b] - cnt[a]);
+    h = ks.slice(0, S.mode === "top" ? 16 : 18).map(k => `<span><i style="background:${ITEM[k][2]}"></i>${esc(ITEM[k][0])} (${cnt[k]})</span>`).join("") + (ks.length > 18 ? `<span>and ${ks.length - 18} more; hover a country</span>` : "");
+  }
+  e.innerHTML = h;
+  document.getElementById("mapsrc").textContent = (isGrid() ? "Crops: CROPGRIDS v1.08 (Tang et al. 2024, CC BY 4.0), harvested area about 2020, 34 crops, summed to 0.1 degree squares. " : "Countries: FAOSTAT land use (2023) and crops (2022 to 2024 average), FAO, CC BY 4.0. ") + "Outlines: Natural Earth. Base map tiles © Esri.";
+}
+let SER = null, serP = null;
+function loadSeries() { if (!serP) serP = fetch("data/page/series.json").then(r => r.json()).then(j => { SER = j; }); return serP; }
+function side() {
+  const box = document.getElementById("side"); let h = "";
+  if (S.sel) {
+    const iso = S.sel, c = SITE.c[iso] || {};
+    h = `<h4>Country</h4><div class="big">${esc(CN(iso))}</div>`;
+    if (c.lu) {
+      const [cp, pp, fp, hpp, chg, ckha, pkha, lkha, y0] = c.lu; const op = Math.max(0, 100 - (cp || 0) - (pp || 0) - (fp || 0));
+      h += `<div class="lubar" title="Land use">${[[cp, "#C9921A"], [pp, "#7FAE5A"], [fp, "#2E6B4F"], [op, isDark() ? "#4a4a40" : "#D8D2C0"]].map(([v, col]) => `<span style="width:${v || 0}%;background:${col}"></span>`).join("")}</div>`;
+      h += `<table><tr><td><span class="sw" style="background:#C9921A"></span>Cropland</td><td class="num">${f1(cp)}% <small>${fmt(ckha)} kha</small></td></tr><tr><td><span class="sw" style="background:#7FAE5A"></span>Pasture</td><td class="num">${f1(pp)}%</td></tr><tr><td><span class="sw" style="background:#2E6B4F"></span>Forest</td><td class="num">${fp == null ? "n/a" : f1(fp) + "%"}</td></tr>
+<tr><td>Cropland per person</td><td class="num">${hpp == null ? "n/a" : (+hpp).toFixed(2) + " ha"}</td></tr><tr><td>Cropland since ${y0}</td><td class="num">${chg == null ? "n/a" : (chg >= 0 ? "+" : "") + Math.round(chg) + "%"}</td></tr></table><p class="sub">Shares of land area, FAOSTAT 2023.</p>`;
+    }
+    if (c.top) {
+      h += `<h4>Biggest crops (2022 to 2024)</h4><table>` + c.top.map(t => `<tr><td><span class="sw" style="background:${ITEM[t[0]][2]}"></span>${esc(itemName(t[0]))}</td><td class="num">${f1(t[2])}% <small>${fmt(t[1] / 1000)} kha</small></td></tr>`).join("") + `</table><p class="sub">Share of ${fmt(c.tot / 1000)} thousand hectares harvested.</p>`;
+      if (c.sp) h += `<h4>Speciality</h4><p><span class="chip" style="background:${ITEM[c.sp[0]][2]}">${esc(itemName(c.sp[0]))}</span> ${f1(c.sp[2])}% of the harvested area, ${f1(c.sp[1])} times the world share; ${f1(c.sp[3])}% of the world's area of this crop.</p>`;
+    }
+    if (c.div != null) h += `<p class="sub">Crop diversity on the grid: ${f1(c.div)} equally common crops (area-weighted, 34 crops).</p>`;
+    h += `<h4>Harvested area since 1961</h4><div class="chart" id="sideChart"></div><p class="sub">Thousand hectares, FAOSTAT, top crops.</p><h4>Cropland and pasture since 1961</h4><div class="chart" id="sideLU"></div>`;
+    if (iso === "GBR" || iso === "IRL") h += `<p class="sub">Note: CROPGRIDS maize here (${fmt(R.grid.eu_maize[iso])} ha) is not in FAOSTAT; probably silage maize.</p>`;
+    box.innerHTML = h; note(`<b>${esc(CN(iso))}</b>`);
+    loadSeries().then(() => { if (S.sel !== iso) return; sideCharts(iso); });
+    return;
+  }
+  if (S.mode === "dom") h = `<h4>Leading crop</h4><div class="big">Pick a place</div><p>Each 10 km square is coloured by the crop with the largest harvested area, from the 34 in CROPGRIDS. Fainter squares have less of their land farmed. Click a square for its crops, or a country for its farmland since 1961.</p>`;
+  else if (S.mode === "crop") { const c = CROPS[CI[S.crop]], r = R.crops.by_k[S.crop], ld = R.leaders[S.crop];
+    h = `<h4>One crop</h4><div class="big">${esc(c[1])}</div><p>${f1(r.ha_2024 / 1e6)} million hectares harvested in 2024 (FAOSTAT), ${r.ha_1961 ? f1(r.ha_2024 / r.ha_1961) + " times" : "n/a"} the area of 1961.</p><h4>Where most is grown</h4><table>` + ld.map(x => `<tr><td><span class="go" data-c="${x.iso}" style="cursor:pointer;text-decoration:underline">${esc(x.name)}</span></td><td class="num">${f1(x.pct)}%</td></tr>`).join("") + `</table><p class="sub">Share of the world's harvested area, 2022 to 2024.</p>`; }
+  else if (S.mode === "div") h = `<h4>Crop diversity</h4><div class="big">Pick a place</div><p>The effective number of crops in each square: 1 means a single crop, 4 means as mixed as four equally common crops. Only the 34 crops count, so vegetables, fruit and fodder are left out.</p>`;
+  else if (S.mode === "dens") h = `<h4>How much is farmed</h4><div class="big">Pick a place</div><p>Harvested area of the 34 crops as a share of each square's land. Over 100% means land cropped more than once a year, as in much of the Ganges plain.</p>`;
+  else h = `<h4>Countries</h4><div class="big">Pick a country</div><p>Click a country, or search, for its land use, biggest crops, speciality and time series since 1961.</p>`;
+  box.innerHTML = h; note("");
+  box.querySelectorAll("[data-c]").forEach(e => e.onclick = () => pickCountry(e.dataset.c, true));
+}
+function sideCharts(iso) {
+  const e = SER.c[iso]; if (!e) return;
+  const b1 = document.getElementById("sideChart"), b2 = document.getElementById("sideLU");
+  if (b1 && e.i) lines(b1, SER.years_c, e.i.map((it, k) => ({ n: itemName(it), c: ITEM[it][2], v: e.v[k] })), { unit: "kha", h: 170, small: true });
+  if (b2 && e.lu) lines(b2, SER.years_l, [{ n: "Cropland", c: "#C9921A", v: e.lu.crop }, { n: "Pasture", c: "#7FAE5A", v: e.lu.past }, { n: "Forest", c: "#2E6B4F", v: e.lu.forest }], { unit: "kha", h: 150, small: true });
+}
+
+/* ---------- actions ---------- */
+function setMode(m) {
+  S.mode = m;
+  document.querySelectorAll("#gridTabs .btn, #luTabs .btn").forEach(b => b.setAttribute("aria-pressed", b.dataset.m === m));
+  document.getElementById("cropRow").hidden = m !== "crop";
+  const go = () => { renderGrid(); restyle(); legend(); side(); };
+  if (isGrid()) { const ps = [loadBase()]; if (m === "crop") ps.push(loadCrop(S.crop)); Promise.all(ps).then(go); } else go();
+  map.closePopup();
+}
+function setCrop(k) { S.crop = k; document.querySelectorAll("#cropRow .btn").forEach(b => b.setAttribute("aria-pressed", b.dataset.k === k)); if (S.mode !== "crop") setMode("crop"); else loadCrop(k).then(() => { renderGrid(); legend(); side(); }); }
+const FIT = { USA: [[24, -125], [50, -66]], FRA: [[41.3, -5.2], [51.2, 9.6]], ESP: [[35.8, -9.5], [43.9, 4.4]], NOR: [[57.9, 4.5], [71.2, 31]], RUS: [[41, 27], [70, 140]], GBR: [[49.9, -8.2], [58.7, 1.8]], NLD: [[50.7, 3.3], [53.6, 7.3]], CHN: [[18, 73], [53.6, 135]], CHL: [[-56, -76], [-17.5, -66]], NZL: [[-47.5, 166], [-34, 179]], CAN: [[42, -140], [62, -52]], AUS: [[-44, 112], [-10, 154]] };
+function fitIso(iso) { const f = WORLD.features.find(x => x.properties.iso === iso); if (!f) return; map.fitBounds(FIT[iso] || L.geoJSON(f).getBounds(), { padding: [10, 10], maxZoom: 7 }); }
+function toMap() { if (small()) document.getElementById("map").scrollIntoView({ behavior: "smooth", block: "start" }); }
+function pickCountry(iso, move) { S.sel = iso; if (move) { fitIso(iso); toMap(); } restyle(); side(); }
+(function tabs() {
+  const mk = (row, [k, l, c]) => { const b = document.createElement("button"); b.className = "btn"; b.dataset.m = k; b.style.setProperty("--tab", c); b.textContent = l; b.onclick = () => setMode(k); row.appendChild(b); };
+  GRIDM.forEach(x => mk(document.getElementById("gridTabs"), x)); LUM.forEach(x => mk(document.getElementById("luTabs"), x));
+  const cr = document.getElementById("cropRow");
+  CROPS.forEach(([k, l, f, c]) => { const b = document.createElement("button"); b.className = "btn"; b.dataset.k = k; b.innerHTML = `<span class="dot" style="background:${c}"></span>${esc(l)}`; b.setAttribute("aria-pressed", k === S.crop); b.onclick = () => setCrop(k); cr.appendChild(b); });
+})();
+const FOCUS = [["World", null], ["UK", [[49.9, -8.2], [58.8, 1.9]]], ["US Corn Belt", [[37, -100], [46.5, -80]]], ["Brazil and Argentina", [[-38, -64], [-8, -38]]], ["Europe", [[36, -10], [60, 40]]], ["Ukraine and Russia", [[44, 22], [57, 60]]],
+  ["Punjab and Ganges", [[21, 70], [32, 92]]], ["Mekong and Thailand", [[8, 97], [22, 110]]], ["Java and Sumatra", [[-9, 95], [6, 116]]], ["West African cocoa", [[4, -9], [10, 3]]], ["Nile", [[22, 28], [32, 34]]], ["China", [[20, 100], [48, 128]]]];
+(function focusRow() {
+  const row = document.getElementById("focusRow");
+  FOCUS.forEach(([n, bb]) => { const b = document.createElement("button"); b.className = "btn"; b.textContent = n; b.onclick = () => focus(n); row.appendChild(b); });
+})();
+function focus(n) {
+  const f = FOCUS.find(x => x[0] === n); if (!f) return;
+  if (!f[1]) { S.sel = null; map.setView([25, 12], small() ? 1 : 2); restyle(); side(); toMap(); return; }
+  map.fitBounds(f[1], { padding: [8, 8] }); if (n === "UK") pickCountry("GBR", false); toMap();
+}
+document.querySelectorAll("[data-show],[data-focus]").forEach(b => b.onclick = e => { e.preventDefault(); if (b.dataset.show) setMode(b.dataset.show); if (b.dataset.crop) setCrop(b.dataset.crop); document.getElementById("atlas").scrollIntoView({ behavior: "smooth" }); if (b.dataset.focus) setTimeout(() => focus(b.dataset.focus), 350); });
+
+/* ---------- search: countries and crops ---------- */
+(function search() {
+  const inp = document.getElementById("q"), sug = document.getElementById("sug"); let opts = [], k = -1;
+  const norm = s => s.normalize("NFD").replace(/[̀-ͯ]/g, "").toLowerCase();
+  function build(q) {
+    const nq = norm(q); if (nq.length < 2) return [];
+    const out = [];
+    WORLD.features.forEach(f => { const n = CN(f.properties.iso); if (norm(n).includes(nq)) out.push({ t: "c", n, iso: f.properties.iso, s: norm(n).startsWith(nq) ? 4 : 1.2 }); });
+    CROPS.forEach(c => { if (norm(c[1]).includes(nq) || norm(c[0]).includes(nq)) out.push({ t: "k", n: c[1], k: c[0], s: norm(c[1]).startsWith(nq) ? 3.5 : 1 }); });
+    return out.sort((a, b) => b.s - a.s).slice(0, 12);
+  }
+  const lab = o => o.t === "c" ? `${esc(o.n)} <span>country</span>` : `${esc(o.n)} <span>crop: map it</span>`;
+  const show = () => { sug.innerHTML = opts.map((o, i) => `<li role="option" aria-selected="${i === k}" data-i="${i}">${lab(o)}</li>`).join(""); sug.style.display = opts.length ? "block" : "none"; };
+  const choose = o => { sug.style.display = "none"; inp.value = o.n; inp.blur(); if (o.t === "c") pickCountry(o.iso, true); else { setCrop(o.k); toMap(); } };
+  inp.addEventListener("input", () => { opts = build(inp.value); k = -1; show(); });
+  inp.addEventListener("keydown", e => { if (e.key === "ArrowDown") { k = Math.min(opts.length - 1, k + 1); show(); e.preventDefault(); } else if (e.key === "ArrowUp") { k = Math.max(0, k - 1); show(); e.preventDefault(); } else if (e.key === "Enter" && opts.length) { choose(opts[Math.max(0, k)]); } else if (e.key === "Escape") { sug.style.display = "none"; } });
+  sug.addEventListener("click", e => { const li = e.target.closest("li"); if (li) choose(opts[+li.dataset.i]); });
+  document.addEventListener("click", e => { if (!e.target.closest(".searchbox")) sug.style.display = "none"; });
+})();
+
+/* ---------- charts ---------- */
+function hbars(box, rows, opts) {
+  resp(box, (w, sm) => {
+    const maxLab = Math.max(...rows.map(r => String(r.lab ?? r.v).length)), lw = sm ? Math.min(150, w * .44) : Math.min(230, w * .42), rh = 26, h = rows.length * rh + 10;
+    const lo = Math.min(0, ...rows.map(r => r.v)), hi = Math.max(0, ...rows.map(r => Math.max(r.v, r.v0 || 0))) || 1;
+    const x0 = lw, x1 = w - 10 - maxLab * 7.4, sx = v => x0 + (x1 - x0) * (v - lo) / (hi - lo);
+    const svg = el("svg", { viewBox: `0 0 ${w} ${h}`, role: "img", "aria-label": opts.aria }, box);
+    if (lo < 0) el("line", { x1: sx(0), x2: sx(0), y1: 0, y2: h, stroke: css("--muted"), "stroke-width": 1 }, svg);
+    rows.forEach((r, i) => {
+      const y = 4 + i * rh, a = sx(Math.min(0, r.v)), b = sx(Math.max(0, r.v)), bw = Math.max(2, b - a);
+      const cut = sm ? 19 : 30;
+      const t = lbl(svg, x0 - 8, y + 16, r.n.length > cut ? r.n.slice(0, cut - 1) + "." : r.n, "lab", "end");
+      const rect = el("rect", { x: a, y: y + 3, width: bw, height: rh - 9, fill: r.c, rx: 2 }, svg);
+      if (r.v0 != null) el("line", { x1: sx(r.v0), x2: sx(r.v0), y1: y, y2: y + rh - 3, stroke: css("--fg"), "stroke-width": 2 }, svg);
+      lbl(svg, (r.v >= 0 ? Math.max(b, r.v0 != null ? sx(r.v0) : 0) + 6 : b + 6), y + 16, r.lab ?? fmt(r.v), "lab b");
+      [rect, t].forEach(e => { if (r.tip) { e.addEventListener("mousemove", ev => showTip(r.tip, ev.clientX, ev.clientY)); e.addEventListener("mouseleave", hideTip); } if (r.click) { e.style.cursor = "pointer"; e.addEventListener("click", r.click); } });
+    });
+  });
+}
+function lines(box, years, series, opts) {
+  resp(box, (w, sm) => {
+    const h = opts.h || (sm ? 230 : 280), padL = 46, padR = opts.small ? 8 : 110, padT = 10, padB = 24;
+    const all = series.flatMap(s => s.v.filter(v => v != null)); const hi = Math.max(1, ...all) * 1.05;
+    const sx = i => padL + (w - padL - padR) * i / (years.length - 1), sy = v => padT + (h - padT - padB) * (1 - v / hi);
+    const svg = el("svg", { viewBox: `0 0 ${w} ${h}`, role: "img", "aria-label": opts.aria || "Line chart" }, box);
+    const step = hi > 4000 ? 1000 : hi > 2000 ? 500 : hi > 800 ? 200 : hi > 400 ? 100 : hi > 100 ? 50 : hi > 40 ? 10 : hi > 10 ? 5 : 1;
+    for (let v = 0; v <= hi; v += step * (hi / step > 6 ? Math.ceil(hi / step / 6) : 1)) { el("line", { x1: padL, x2: w - padR, y1: sy(v), y2: sy(v), stroke: css("--rule"), "stroke-width": 1 }, svg); lbl(svg, padL - 6, sy(v) + 4, fmt(v), "lab s m", "end"); }
+    years.forEach((y, i) => { if (y % (sm || opts.small ? 20 : 10) === 0 || i === years.length - 1 && !opts.small) lbl(svg, sx(i), h - 6, y, "lab s m", "middle"); });
+    const ends = [];
+    series.forEach(s => {
+      let d = "", pen = false; s.v.forEach((v, i) => { if (v == null) { pen = false; return; } d += (pen ? "L" : "M") + sx(i).toFixed(1) + " " + sy(v).toFixed(1); pen = true; });
+      el("path", { d, fill: "none", stroke: s.c, "stroke-width": opts.small ? 1.8 : 2.4, "stroke-linejoin": "round" }, svg);
+      const li = s.v.map((v, i) => v == null ? -1 : i).filter(i => i >= 0).pop(); if (li != null && li >= 0 && !opts.small) ends.push({ y: sy(s.v[li]), s });
+    });
+    ends.sort((a, b) => a.y - b.y); let last = -99; ends.forEach(e => { const y = Math.max(e.y, last + 13); last = y; lbl(svg, w - padR + 6, y + 4, e.s.n, "lab s").setAttribute("style", `fill:${e.s.c}`); });
+    const hover = el("rect", { x: padL, y: padT, width: w - padL - padR, height: h - padT - padB, fill: "transparent" }, svg);
+    const guide = el("line", { x1: 0, x2: 0, y1: padT, y2: h - padB, stroke: css("--muted"), "stroke-dasharray": "3 3", opacity: 0 }, svg);
+    const mv = ev => { const r = svg.getBoundingClientRect(); const x = (ev.clientX - r.left) * w / r.width; const i = Math.max(0, Math.min(years.length - 1, Math.round((x - padL) / (w - padL - padR) * (years.length - 1)))); guide.setAttribute("x1", sx(i)); guide.setAttribute("x2", sx(i)); guide.setAttribute("opacity", 1);
+      showTip(`<b>${years[i]}</b><br>` + series.map(s => `<span class="sw" style="background:${s.c}"></span>${esc(s.n)}: ${s.v[i] == null ? "n/a" : fmt(s.v[i])}`).join("<br>") + (opts.unit ? `<br><small>${esc(opts.unit)}</small>` : ""), ev.clientX, ev.clientY); };
+    hover.addEventListener("mousemove", mv); hover.addEventListener("mouseleave", () => { hideTip(); guide.setAttribute("opacity", 0); });
+    if (opts.small) { const lg = document.createElement("div"); lg.className = "legend"; lg.innerHTML = series.map(s => `<span><i style="background:${s.c}"></i>${esc(s.n)}</span>`).join(""); box.appendChild(lg); }
+  });
+}
+(function charts() {
+  const L1 = R.land;
+  lines(document.getElementById("landChart"), L1.years, [{ n: "Pasture", c: "#7FAE5A", v: L1.world_series.past }, { n: "Cropland", c: "#C9921A", v: L1.world_series.crop }, { n: "Forest", c: "#2E6B4F", v: L1.world_series.forest.map(v => v || null) }], { unit: "million hectares", aria: "World cropland, pasture and forest since 1961" });
+  const ch = L1.top_gain_kha.concat(L1.top_loss_kha.slice().reverse());
+  hbars(document.getElementById("chgChart"), ch.map(x => ({ n: x.name, v: x.v / 1000, c: x.v >= 0 ? "#2E7D4F" : "#B5562E", lab: (x.v >= 0 ? "+" : "") + f1(x.v / 1000), click: () => { setMode("lu_chg"); document.getElementById("atlas").scrollIntoView({ behavior: "smooth" }); setTimeout(() => pickCountry(x.iso, true), 350); } })), { aria: "Biggest gains and losses of cropland since 1961" });
+  hbars(document.getElementById("cropChart"), R.crops.rows.map(r => ({ n: r.name, v: r.ha_2024 / 1e6, v0: r.ha_1961 / 1e6, c: CROPS[CI[r.k]][3], lab: f1(r.ha_2024 / 1e6), tip: `<b>${esc(r.name)}</b><br>1961: ${f1(r.ha_1961 / 1e6)} Mha<br>2024: ${f1(r.ha_2024 / 1e6)} Mha${r.x ? "<br>×" + f1(r.x) : ""}`, click: () => { setCrop(r.k); document.getElementById("atlas").scrollIntoView({ behavior: "smooth" }); } })), { aria: "Harvested area of 34 crops in 1961 and 2024" });
+  const fc = {}; Object.values(SITE.c).forEach(c => { if (c.top) { const it = c.top[0][0]; fc[it] = (fc[it] || 0) + 1; } });
+  const who = {}; Object.entries(SITE.c).forEach(([iso, c]) => { if (c.top) (who[c.top[0][0]] = who[c.top[0][0]] || []).push(CN(iso)); });
+  hbars(document.getElementById("topChart"), Object.keys(fc).sort((a, b) => fc[b] - fc[a]).slice(0, 14).map(k => ({ n: ITEM[k][0], v: fc[k], c: ITEM[k][2], tip: `<b>${esc(ITEM[k][0])}</b><br>${esc((who[k] || []).slice(0, 16).join(", "))}${(who[k] || []).length > 16 ? "..." : ""}` })), { aria: "Number of countries by biggest crop" });
+  const U = R.uk; const UN = { wheat: ["Wheat", "#E3B23C"], barley: ["Barley", "#9E7B3A"], rapeseed: ["Rapeseed", "#B6C22A"], oats: ["Oats", "#C8B57A"], potato: ["Potatoes", "#B095CF"], sugarbeet: ["Sugar beet", "#D2559B"], fieldbean: ["Field beans", "#B5562E"], pea: ["Dry peas", "#E0A487"] };
+  lines(document.getElementById("ukChart"), U.years, Object.keys(UN).map(k => ({ n: UN[k][0], c: UN[k][1], v: U.series[k].map(v => v / 1000) })), { unit: "thousand hectares", aria: "UK harvested area by crop since 1961" });
+  const cards = [["rice", "Monsoon Asia", `${Math.round(R.belts.rice_asia)}%`, "of the world's rice area", "Punjab and Ganges"], ["soybean", "The Americas", `${Math.round(R.belts.soy_americas)}%`, "of the world's soya beans", "Brazil and Argentina"],
+    ["oilpalm", "Indonesia and Malaysia", `${Math.round(R.belts.palm_idn_mys)}%`, "of the world's oil palm", "Java and Sumatra"], ["cocoa", "West Africa", `${Math.round(R.belts.cocoa_wafrica)}%`, "of the world's cocoa", "West African cocoa"],
+    ["maize", "The US Corn Belt", `${Math.round(R.leaders.maize.find(x => x.iso === "USA").pct)}%`, "of the world's maize area is in the United States", "US Corn Belt"], ["wheat", "The wheat belts", `${Math.round(R.grid.dom_by_k.wheat)}%`, "of farmed squares have wheat as the leading crop", "Ukraine and Russia"]];
+  const bc = document.getElementById("beltCards");
+  cards.forEach(([k, name, big, what, foc]) => { const d = document.createElement("div"); d.className = "card"; d.style.setProperty("--c", CROPS[CI[k]][3]); d.innerHTML = `<b>${esc(name)}</b><div class="big">${esc(big)} <span>${esc(what)}</span></div><button class="btn">Show ${esc(CROPS[CI[k]][1].toLowerCase())}</button>`;
+    d.querySelector("button").onclick = () => { setCrop(k); document.getElementById("atlas").scrollIntoView({ behavior: "smooth" }); setTimeout(() => focus(foc), 350); }; bc.appendChild(d); });
+  const sc = document.getElementById("specCards");
+  ["SAU", "MDG", "NZL", "BOL", "TUR", "GBR"].forEach(iso => { const s = R.spec[iso]; const c = SITE.c[iso]; const d = document.createElement("div"); d.className = "card"; d.style.setProperty("--c", ITEM[c.sp[0]][2]);
+    d.innerHTML = `<b>${esc(CN(iso))}: ${esc(s.name.toLowerCase())}</b><div class="big">×${fmt(s.lq)} <span>the world share; ${f1(s.share)}% of harvested land</span></div><button class="btn">Show on the map</button>`;
+    d.querySelector("button").onclick = () => { setMode("spec"); document.getElementById("atlas").scrollIntoView({ behavior: "smooth" }); setTimeout(() => pickCountry(iso, true), 350); }; sc.appendChild(d); });
+})();
+
+/* ---------- start ---------- */
+map.on("zoomend moveend", placeNames);
+document.getElementById("theme").onclick = () => { const r = document.documentElement; r.dataset.theme = isDark() ? "light" : "dark"; setTiles(); buildLUT(); if (gridL) gridL.redraw(); legend(); redraws.forEach(f => f()); };
+setTiles(); setMode("dom"); legend(); side(); placeNames();
+loadBase2();
+</script>
+/*FULLSCREEN*/
+</body>
+</html>
