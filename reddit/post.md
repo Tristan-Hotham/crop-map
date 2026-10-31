@@ -13,5 +13,5 @@ Source: CROPGRIDS v1.08, Tang, Nguyen, Conchedda, Casse, Tubiello and Maggi (202
 Tools: Python (numpy, netCDF4, pandas, pyproj, matplotlib); Leaflet for the interactive map.
 
 Interactive version: https://maps.tristanhotham.com/crop-map/
-Paper: https://doi.org/{{DOI}}
+Paper: https://doi.org/10.5281/zenodo.23842987
 Blog post: https://blog.tristanhotham.com/2026/10/31/crop-map/

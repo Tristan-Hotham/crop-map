@@ -2,7 +2,7 @@
  "meta": {
   "page": "https://maps.tristanhotham.com/crop-map/",
   "repo": "https://github.com/Tristan-Hotham/crop-map",
-  "doi": "{{DOI}}",
+  "doi": "10.5281/zenodo.23842987",
   "retrieved": "2026",
   "n_crops": 34,
   "n_crops_cropgrids": 173

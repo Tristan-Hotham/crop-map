@@ -3,7 +3,7 @@
 A world map of farmland and crops: the leading crop on every 10 km square of the world's farmland, 34 crops one by one, crop diversity, and every country's cropland, pasture, biggest crop and speciality since 1961. Built from CROPGRIDS v1.08 (0.05 degree crop grids for about 2020) and FAOSTAT (country statistics from 1961).
 
 Interactive page: https://maps.tristanhotham.com/crop-map/
-Paper: https://doi.org/{{DOI}}
+Paper: https://doi.org/10.5281/zenodo.23842987
 Blog post: https://blog.tristanhotham.com/2026/10/31/crop-map/
 
 ## Headline results
@@ -71,7 +71,7 @@ Code is MIT; text, figures and derived data are CC BY 4.0 (see LICENSE).
 
 ## Citation
 
-Hotham, T. (2026) What the world grows: farmland and crops on one map, from CROPGRIDS and FAOSTAT. Zenodo. https://doi.org/{{DOI}}
+Hotham, T. (2026) What the world grows: farmland and crops on one map, from CROPGRIDS and FAOSTAT. Zenodo. https://doi.org/10.5281/zenodo.23842987
 
 Dr Tristan Hotham, Independent researcher. ORCID 0000-0003-4931-9349.
 
