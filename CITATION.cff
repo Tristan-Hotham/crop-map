@@ -1,0 +1,23 @@
+cff-version: 1.2.0
+message: "If you use this data or code, please cite it as below."
+title: "What the World Grows: Farmland and Crops on One Map, from CROPGRIDS and FAOSTAT"
+type: dataset
+authors:
+  - family-names: Hotham
+    given-names: Tristan
+    orcid: "https://orcid.org/0000-0003-4931-9349"
+    affiliation: "Independent researcher"
+doi: "10.5281/zenodo.23842987"
+url: "https://maps.tristanhotham.com/crop-map/"
+repository-code: "https://github.com/Tristan-Hotham/crop-map"
+license: CC-BY-4.0
+keywords:
+  - "crops"
+  - "farmland"
+  - "agriculture"
+  - "land use"
+  - "cropland"
+  - "pasture"
+  - "CROPGRIDS"
+  - "FAOSTAT"
+  - "maps"
